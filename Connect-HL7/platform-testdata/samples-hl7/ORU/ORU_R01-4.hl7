@@ -1,0 +1,65 @@
+MSH|^~\&|HCMMS|MCTN|MyMedical|MCTN|20150323144246||ORU^R01|91734|P|2.3
+PID|1||6010022||SOFTTEST^HIECLIENT||19650601|F||||||||||60100222016
+PV1|1|O|1893^^^ZHIE||||4098^Physician^Sheldon|4098^Physician^Sheldon|||||||||4098^Physician^Sheldon|R||||||||||||||||||||||||||201503201114
+ORC|RE|528527425|56083|||||||||4098^Physician^Sheldon^A
+OBR|1|528527425|CTG150000145|LAB6460^Gene Bone Marrow||201503201114|201503231500|||||||201503231629||4098^Physician^Sheldon^^^^MD||||||201503231637||CTG|F||1
+OBX|1|TX|LAB6460^Gene Bone Marrow||||||||||||RWBH
+NTE|1||Physician: SHELDON A PHYSICIAN, MD
+NTE|2||  NPI: 1881654887
+NTE|3||Location: Oakland Medical Group III
+NTE|4||    Loc ID: 1893
+NTE|5
+NTE|6||Collected: 3/23/2015 3:00 PM Received: 3/23/2015
+NTE|7|| 4:29 PM Lab      642000066
+NTE|8||
+NTE|9||        Order#:
+NTE|10
+NTE|11||Clinical History: Testing field shows all data
+NTE|12|| typed
+NTE|13||CTG-15-145
+NTE|14||
+NTE|15
+NTE|16||Specimen Type:               Bone Marrow No. of
+NTE|17|| Cells Counted:  20
+NTE|18||Modal Chromosome Number:     46          No. of
+NTE|19|| Cells Analyzed: 20
+NTE|20||No. and/or Type of Cultures: ST
+NTE|21|| Hypermodal Cells:      0
+NTE|22||Staining Method:             GTL
+NTE|23|| Hypomodal Cells:       0
+NTE|24||Band Level:                  400-450     No. of
+NTE|25|| Karyotypes:     3
+NTE|26
+NTE|27||KARYOTYPE:      46,XX[20]
+NTE|28||
+NTE|29
+NTE|30||CYTOGENETIC DIAGNOSIS:        Normal Female
+NTE|31|| Chromosome Complement
+NTE|32
+NTE|33||INTERPRETATION: Cytogenetic examination of twenty
+NTE|34|| metaphase cells revealed a
+NTE|35||normal female diploid karyotype with no
+NTE|36|| consistent numerical or structural
+NTE|37||chromosome aberrations observed. This chromosome
+NTE|38|| study does not eliminate the
+NTE|39||possibility of single gene defects, chromosomal
+NTE|40|| mosaicism involving abnormal
+NTE|41||cell lines of low frequency, small structural
+NTE|42|| chromosome abnormalities, or
+NTE|43||failure to sample any malignant clones(s) that
+NTE|44|| may be present.
+NTE|45
+NTE|46||Test Person NODOC
+NTE|47||
+NTE|48||Medical Director, Clinical Cytogenomics
+NTE|49|| Laboratory
+NTE|50||Board Certified Clinical Cytogeneticist/Clinical
+NTE|51|| Molecular Geneticist
+NTE|52||3/23/2015 4:37 PM
+NTE|53||
+NTE|54||All results from conventional karyotyping,
+NTE|55|| molecular cytogenetics (FISH), and
+NTE|56||chromosome microarray studies, as well as the
+NTE|57|| final report, have been reviewed
+NTE|58||by a staff cytogeneticist.
+NTE|59||
