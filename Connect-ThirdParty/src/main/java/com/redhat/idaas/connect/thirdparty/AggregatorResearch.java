@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
 import org.apache.camel.dataformat.bindy.annotation.DataField;
 
+import java.util.Date;
+
 @CsvRecord(separator = "\\|")
 public class AggregatorResearch {
     @DataField(pos = 1)
@@ -30,8 +32,8 @@ public class AggregatorResearch {
     //@DataField(pos = 8, pattern="yyyy-MM-dd")
     //@JsonFormat(pattern = "yyyy-MM-dd")
     //private Date admissionDate;
-    @DataField(pos = 8)
-    private String reportedDateTime;
+    @DataField(pos = 8, pattern = "yyyyMMddHHmm")
+    private Date reportedDateTime;
 
     public String getOrganizationId() {
         return organizationId;
@@ -97,11 +99,11 @@ public class AggregatorResearch {
          this.admissionDate = admissionDate;
      }
      */
-    public String getReportedDateTime() {
+    public Date getReportedDateTime() {
         return reportedDateTime;
     }
 
-    public void setReportedDateTime(String reportedDate) {
+    public void setReportedDateTime(Date reportedDate) {
         this.reportedDateTime = reportedDateTime;
     }
 }

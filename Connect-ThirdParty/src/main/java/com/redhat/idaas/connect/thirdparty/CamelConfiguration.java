@@ -25,12 +25,14 @@ import org.apache.camel.Exchange;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.Processor;
+import org.apache.camel.builder.ExpressionClause;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.apache.camel.component.kafka.KafkaComponent;
 import org.apache.camel.component.kafka.KafkaConstants;
 import org.apache.camel.component.kafka.KafkaEndpoint;
 import org.apache.camel.dataformat.bindy.csv.BindyCsvDataFormat;
+import org.apache.camel.processor.aggregate.UseLatestAggregationStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -191,7 +193,7 @@ public class CamelConfiguration extends RouteBuilder {
           }
         })
         .to("sql:insert into reportedcases (organization, patientaccount, patientname, zipcode, roombed, age, gender, admissiondate) values (#,#,#,#,#,#,#,#)");
-
+        
      /*
      *  Sample: CSV Covid Data to Topic
      *  Covid John Hopkins Data
@@ -231,5 +233,33 @@ public class CamelConfiguration extends RouteBuilder {
             .setProperty("auditdetails").constant("${file:name} - was processed, parsed and put into topic")
             .wireTap("direct:auditing");
 
+    /*
+     *  Sample: CSV Aggregate Research Data to Topic
+     *
+     */
+    from("file:{{aggregator.research.data.directory}}/")
+            .choice()
+            .when(simple("${file:ext} == 'csv'"))
+            .split(body().tokenize("\n")).streaming()
+            .unmarshal(new BindyCsvDataFormat(AggregatorResearch.class))
+            //Aggregate messages with the same organizationId, patientAccount and zipCode
+            //waiting 10 seconds for messages before completing aggregation
+            //and passing a single message with the latest reportedDateTime
+            .aggregate(simple("${body.organizationId}-${body.patientAccount}-${body.zipCode}"), new LastReportedResearchStrategy()).completionTimeout(10000)
+            .marshal(new JacksonDataFormat(AggregatorResearch.class))
+            .to(getKafkaTopicUri("ResearchData"))
+            // Auditing
+            .setProperty("processingtype").constant("csv-data")
+            .setProperty("appname").constant("iDAAS-Connect-ThirdParty")
+            .setProperty("industrystd").constant("CSV")
+            .setProperty("messagetrigger").constant("CSVFile-ResearchData")
+            .setProperty("component").simple("${routeId}")
+            .setProperty("camelID").simple("${camelId}")
+            .setProperty("exchangeID").simple("${exchangeId}")
+            .setProperty("internalMsgID").simple("${id}")
+            .setProperty("bodyData").simple("${body}")
+            .setProperty("processname").constant("Input")
+            .setProperty("auditdetails").constant("${file:name} - was processed, parsed and put into topic")
+            .wireTap("direct:auditing");
   }
 }
