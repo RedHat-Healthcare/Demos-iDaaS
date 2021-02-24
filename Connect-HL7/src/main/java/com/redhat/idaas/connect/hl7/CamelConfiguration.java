@@ -67,6 +67,9 @@ public class CamelConfiguration extends RouteBuilder {
             "?brokers=" +
             config.getKafkaBrokers();
   }
+  private String getHL7UriDirectory(String dirName) {
+    return "file:src/" + dirName + "?delete=true?noop=true";
+  }
 
   private String getHL7Uri(int port) {
     return "netty4:tcp://0.0.0.0:" + port + "?sync=true&decoder=#hl7Decoder&encoder=#hl7Encoder";
@@ -125,7 +128,32 @@ public class CamelConfiguration extends RouteBuilder {
      *   https://camel.apache.org/components/latest/languages/simple-language.html
      *
      */
-	  // ADT
+
+    // HL7 File Based Implementation
+    // ADT
+    from(getHL7UriDirectory(config.getHl7Directory()))
+            .routeId("hl7FileBasedAdmissions")
+            .convertBodyTo(String.class)
+            // set Auditing Properties
+            .setProperty("processingtype").constant("data")
+            .setProperty("appname").constant("iDAAS-Connect-HL7")
+            .setProperty("industrystd").constant("HL7")
+            .setProperty("messagetrigger").constant("ADT")
+            .setProperty("componentname").simple("${routeId}")
+            .setProperty("processname").constant("Input")
+            .setProperty("camelID").simple("${camelId}")
+            .setProperty("exchangeID").simple("${exchangeId}")
+            .setProperty("internalMsgID").simple("${id}")
+            .setProperty("bodyData").simple("${body}")
+            .setProperty("auditdetails").constant("ADT message received")
+            // iDAAS DataHub Processing
+            .wireTap("direct:auditing")
+            // Send to Topic
+            .convertBodyTo(String.class).to(getKafkaTopicUri("mctn_mms_adt"))
+    ;
+
+    // HL7 Server Soclets
+   	  // ADT
 	  from(getHL7Uri(config.getAdtPort()))
           .routeId("hl7Admissions")
           .convertBodyTo(String.class)
