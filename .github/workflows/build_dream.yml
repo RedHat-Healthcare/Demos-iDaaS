@@ -1,4 +1,4 @@
-name: Maven Build and Deploy
+name: build DREAM demo
 
 on:
   push:
@@ -14,6 +14,6 @@ jobs:
         with:
           java-version: 1.8
       - name: Build and Deploy package
-        run: mvn -B clean deploy --fae --file pom.xml
+        run: cd DREAM && mvn -B clean deploy --fae --file pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
