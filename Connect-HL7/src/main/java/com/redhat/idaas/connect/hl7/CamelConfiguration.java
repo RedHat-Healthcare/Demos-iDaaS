@@ -68,11 +68,12 @@ public class CamelConfiguration extends RouteBuilder {
             config.getKafkaBrokers();
   }
   private String getHL7UriDirectory(String dirName) {
-    return "file:src/" + dirName + "?delete=true?noop=true";
+    return "file:src/" + dirName; //+ "?delete=true?noop=true";
   }
 
   private String getHL7Uri(int port) {
-    return "netty4:tcp://0.0.0.0:" + port + "?sync=true&decoder=#hl7Decoder&encoder=#hl7Encoder";
+    String s = "netty4:tcp:0.0.0.0:" + port + "?sync=true&decoder=#hl7Decoder&encoder=#hl7Encoder";
+    return s;
   }
 
   /*
@@ -131,7 +132,7 @@ public class CamelConfiguration extends RouteBuilder {
 
     // HL7 File Based Implementation
     // ADT
-    from(getHL7UriDirectory(config.getHl7Directory()))
+   /* from(getHL7UriDirectory(config.getHl7Directory()))
             .routeId("hl7FileBasedAdmissions")
             .convertBodyTo(String.class)
             // set Auditing Properties
@@ -150,9 +151,9 @@ public class CamelConfiguration extends RouteBuilder {
             .wireTap("direct:auditing")
             // Send to Topic
             .convertBodyTo(String.class).to(getKafkaTopicUri("mctn_mms_adt"))
-    ;
+    ;*/
 
-    // HL7 Server Soclets
+      // HL7 Server Sockets
    	  // ADT
 	  from(getHL7Uri(config.getAdtPort()))
           .routeId("hl7Admissions")
