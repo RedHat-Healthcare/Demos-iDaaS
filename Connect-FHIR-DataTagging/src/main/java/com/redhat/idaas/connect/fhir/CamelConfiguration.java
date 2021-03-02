@@ -69,7 +69,7 @@ public class CamelConfiguration extends RouteBuilder {
 
   // Bean for iDaaS Event Builder Specifically the FHIRStreamParser
   @Bean
-  public FHIRStreamParser routingEventParser() {
+  public FHIRStreamParser fhirStreamParser() {
     return new FHIRStreamParser();
   }
 
