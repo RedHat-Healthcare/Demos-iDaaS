@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.redhat.idaas.connect.thirdparty.ConfigProperties",
+      "name": "",
+      "type": "com.redhat.idaas.connect.thirdparty.ConfigProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.redhat.idaas.connect.thirdparty.ConfigProperties",
+      "name": "kafka-brokers",
+      "type": "java.lang.String"
+    }
+  ]
+}
