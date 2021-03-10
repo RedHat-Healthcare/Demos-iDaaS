@@ -27,11 +27,11 @@ show a sample endpoint for strickly closing the loop on data processing. <br/>
 Lets correlate the specific components we have designed and developed to their functional usage: <br/>
 
 * iDaaS Connect - This is integration to data systems. We have defined this specific branding to help us be try and be specific through naming.<br/>
--iDaaS Connect HL7: This specifically ONLY deals with the ![http://www.hl7.org/implement/standards/product_section.cfm?section=13](HL7 Protocol).<br/>
--iDaaS Connect BlueButton: This is specifically designed to support the ![https://bluebutton.cms.gov/](Blue Button/CARIN) requirements and demonstrates direct integration with
+-iDaaS Connect HL7: This specifically ONLY deals with the ![http://www.hl7.org/implement/standards/product_section.cfm?section=13] (HL7 Protocol).<br/>
+-iDaaS Connect BlueButton: This is specifically designed to support the ![https://bluebutton.cms.gov/] (Blue Button/CARIN) requirements and demonstrates direct integration with
 CMS Blue Button platform. <br/>
--iDaaS Connect FHIR: This is intended to deal with ALL aspects of ![https://www.hl7.org/fhir/](CMS Interoperability Final Rule) efforts specific to FHIR. It is important to note that this supports both FHIR Resources and Bundles as well.<br/>
--iDaaS Connect ThirdParty: This is intended to deal with ANY non healthcare specific connectors like (File, SFTP, Queues, RDBMS, etc.). The ONLY limitation is the ![upstream connector support](https://camel.apache.org/components/latest/)<br/>
+-iDaaS Connect FHIR: This is intended to deal with ALL aspects of ![https://www.hl7.org/fhir/] (CMS Interoperability Final Rule) efforts specific to FHIR. It is important to note that this supports both FHIR Resources and Bundles as well.<br/>
+-iDaaS Connect ThirdParty: This is intended to deal with ANY non healthcare specific connectors like (File, SFTP, Queues, RDBMS, etc.). The ONLY limitation is the ![https://camel.apache.org/components/latest/] (Camel Supported Adapters)<br/>
 -iDaaS DREAM: This is a sample demonstration that shows intelligent routing with HL7 messages currently. The intent is to showcase how legacy integration
 can be used with a modern integration capability. This allows teams to build topic based routing without adding new components or anything.<br/>
 * iDaaS Route (Data Distribution) - This is all about event streaming and processing in accordance with what is needed for the reference architecture. <br/>
