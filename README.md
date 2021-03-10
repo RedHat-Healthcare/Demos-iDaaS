@@ -27,10 +27,10 @@ show a sample endpoint for strickly closing the loop on data processing. <br/>
 Lets correlate the specific components we have designed and developed to their functional usage: <br/>
 
 * iDaaS Connect - This is integration to data systems. We have defined this specific branding to help us be try and be specific through naming.<br/>
--iDaaS Connect HL7: This specifically ONLY deals with the ![HL7 Protcol](http://www.hl7.org/implement/standards/product_section.cfm?section=13).<br/>
--iDaaS Connect BlueButton: This is specifically designed to support the ![Blue Button/CARIN](https://bluebutton.cms.gov/) requirements and demonstrates direct integration with
+-iDaaS Connect HL7: This specifically ONLY deals with the ![http://www.hl7.org/implement/standards/product_section.cfm?section=13](HL7 Protocol).<br/>
+-iDaaS Connect BlueButton: This is specifically designed to support the ![https://bluebutton.cms.gov/](Blue Button/CARIN) requirements and demonstrates direct integration with
 CMS Blue Button platform. <br/>
--iDaaS Connect FHIR: This is intended to deal with ALL aspects of ![CMS Interoperability Final Rule](https://www.hl7.org/fhir/) efforts specific to FHIR Resources and transactions.<br/>
+-iDaaS Connect FHIR: This is intended to deal with ALL aspects of ![https://www.hl7.org/fhir/](CMS Interoperability Final Rule) efforts specific to FHIR. It is important to note that this supports both FHIR Resources and Bundles as well.<br/>
 -iDaaS Connect ThirdParty: This is intended to deal with ANY non healthcare specific connectors like (File, SFTP, Queues, RDBMS, etc.). The ONLY limitation is the ![upstream connector support](https://camel.apache.org/components/latest/)<br/>
 -iDaaS DREAM: This is a sample demonstration that shows intelligent routing with HL7 messages currently. The intent is to showcase how legacy integration
 can be used with a modern integration capability. This allows teams to build topic based routing without adding new components or anything.<br/>
@@ -39,14 +39,6 @@ can be used with a modern integration capability. This allows teams to build top
 of ways.
 * iDaaS KIC - This is a key part of the reference implementation as it deals with auditing and transactional data tracking for ANY effort ongoing within the platform. Within healthcare auditing of transactions
 is a critical phase for HIPAA compliance and it also is critical as organizations have internal teams that typically audit systems activity.
-
-## High Level Architectural Design
-The design of iDaas is intended to provide both isolation and scale. Additionally, when applicable ALL components can be run as
-containers. To help with this we have included the relevant docker-compose files in each specific repository. Within
-healthcare the ONLY specific protocol we caution against running as a container is HL7 as it is could open potential vulnerabilities.
-![https://github.com/RedHat-Healthcare/iDAAS/blob/master/content/images/iDAAS-Platform/iDAASPlatform-Visuals-iDAASDataTier-4Rs.png](https://github.com/RedHat-Healthcare/iDAAS/blob/master/content/images/iDAAS-Platform/iDAASPlatform-Visuals-iDAASDataTier-4Rs.png)
-## High Level Component Design
-![https://github.com/RedHat-Healthcare/iDAAS/blob/master/content/images/iDAAS-Platform/iDAAS%20Platform%20-%20Visuals%20-%20iDaaS%20Data%20Flow%20-%20Detailed.png](https://github.com/RedHat-Healthcare/iDAAS/blob/master/content/images/iDAAS-Platform/iDAAS%20Platform%20-%20Visuals%20-%20iDaaS%20Data%20Flow%20-%20Detailed.png)
 
 ## [Connect-BlueButton](Connect-BlueButton)
 This project fetches Medicare data of an authenticated beneficiary through the Blue Button API and sends it to a Kafka topic.
