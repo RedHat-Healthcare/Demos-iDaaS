@@ -32,13 +32,18 @@ Lets correlate the specific components we have designed and developed to their f
 CMS Blue Button platform. <br/>
 -iDaaS Connect FHIR: This is intended to deal with ALL aspects of [https://www.hl7.org/fhir/] (CMS Interoperability Final Rule) efforts specific to FHIR. It is important to note that this supports both FHIR Resources and Bundles as well.<br/>
 -iDaaS Connect ThirdParty: This is intended to deal with ANY non healthcare specific connectors like (File, SFTP, Queues, RDBMS, etc.). The ONLY limitation is the [https://camel.apache.org/components/latest/] (Camel Supported Adapters)<br/>
+-iDaaS Connect Aggregator: A very usable aggregation design pattern to show how multiple data files containing similiar data can be simplified to one data feed.
 -iDaaS DREAM: This is a sample demonstration that shows intelligent routing with HL7 messages currently. The intent is to showcase how legacy integration
 can be used with a modern integration capability. This allows teams to build topic based routing without adding new components or anything.<br/>
-* iDaaS Route (Data Distribution) - This is all about event streaming and processing in accordance with what is needed for the reference architecture. <br/>
+* iDaaS Route - This is all about event streaming and processing in accordance with what is needed for the reference architecture. <br/>
 * iDaaS DREAM (Business Process/Parsing/Mapping) - These are reference designs intended to showcase needed industry capabilities for processing dat in a variety
 of ways.
 * iDaaS KIC - This is a key part of the reference implementation as it deals with auditing and transactional data tracking for ANY effort ongoing within the platform. Within healthcare auditing of transactions
 is a critical phase for HIPAA compliance and it also is critical as organizations have internal teams that typically audit systems activity.
+
+## [Connect-Aggregator](Connect-Aggregator)
+Connect Aggregator specifically addresses how to take data from multiple sources identify key attributes to ensure
+you only send one transaaction out.
 
 ## [Connect-BlueButton](Connect-BlueButton)
 This project fetches Medicare data of an authenticated beneficiary through the Blue Button API and sends it to a Kafka topic.
@@ -50,15 +55,22 @@ Electronic Data Interchange (EDI) is the automated transfer of data between a ca
 Demo of iDAAS Connect FHIR capabilities, this solution is intended to enable resources to get up and running and build
 a quick understanding of the iDAAS Connect FHIR overall capabilities.
 
+## [Connect-FHIR-DataTagging](Connect-FHIR-DataTagging)
+Demo of iDAAS Connect FHIR capabilities and invokes real time data parsing and transformation with FHIR data.
+
 ## [Connect-HL7](Connect-HL7)
-iDAAS-Connect-HL7 specifically deals with enabling 
-iDAAS to process the healthcare industry standard HL7 based transactions ONLY.
+iDAAS-Connect-HL7 specifically deals with enabling iDAAS to process the healthcare industry standard HL7 based transactions ONLY.
 
 ## [Connect-ThirdParty](Connect-ThirdParty)
 Enables iDAAS to third party connectivity.  This includes: RDBMS, Kafka, Mainframe, Files, SFTP, and many others.
+
+## [iDaaS-KIC-Integration](iDaaS-KIC-Integration)
+Shows the iDaaS KIC(Knowledge, Insight and Conformance) tier for enabling resources to see what the accelerators have processed.
 
 ## [DREAM](DREAM)
 Showcase the ability to route data real time and create new topics on demand as needed to help facilitate information processing and addressing needs for business in real time.
 
 ## [Route-DataDistribution](Route-DataDistribution)
 Route Data Distribution specifically addresses data connectivity and data distribution of information.
+
+

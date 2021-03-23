@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Connect-FHIR" />
         <module name="demo-idaas-connect-fhir" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Connect-FHIR" target="1.8" />
       <module name="demo-idaas-connect-fhir" target="1.8" />
     </bytecodeTargetLevel>
   </component>
