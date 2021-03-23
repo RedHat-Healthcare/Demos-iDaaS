@@ -7,7 +7,8 @@ FHIR Resource support please go to the Connected Health/iDAAS
 Supported Transactions page</a>. Currently, we support almost 80 FHIR Resources!!! In order to 
 support features like searching a FHIR Server will be required. The iDAAS-Connect-FHIR component 
 does fully support integrating to external vendor FHIR server, look in the running section 
-below for more details and specifics.  
+below for more details and specifics. If you are concerned and wonder "what bundles do they support?" the answer is we do
+not differentiate and can process daat contained within bundles or directly as resources.
 
 ## Additional Artifacts/Apps/Data
 This solution contains three supporting directories. The intent of these artifacts to enable
