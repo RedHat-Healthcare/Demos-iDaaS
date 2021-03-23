@@ -22,7 +22,10 @@ and also building and packaging the solution as well. All the scripts are named 
 3. platform-testdata: sample transactions to leverage for using the platform. We have included FHIR message samples.
 
 ## Scenario: Integration 
-This repository follows a very common general facility based implementation. 
+This repository follows a very common general facility based implementation. Below is a visual intended to help show a general data flow so as you read the steps it
+becomes clearer how all the iDaaS accelerator components work together. <br/>
+
+<img src="https://github.com/RedHat-Healthcare/iDAAS/blob/master/content/images/iDAAS-Platform/DataFlow-FHIR.png" width="800" height="600">
 
 ### Integration Data Flow Steps
 This data flow is a sample flow based on real world usage and needs. When the iDAAS-Connect-FHIR starts it 
