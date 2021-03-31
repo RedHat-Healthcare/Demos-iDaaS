@@ -25,13 +25,13 @@ The following section is meant to define and also help visualize the general arc
 As you look at this visual notice we DO NOT take a target data position to build toward, we believe that is a customers to shape for their specific business needs. We are working on creating a demonstration to show a sample endpoint for strickly closing the loop on data processing. <br/>  
 
 # iDaaS Demos
-This section attempts yo explain the specific iDaas Demos.
+This section attempts to explain the specific iDaas Demos. It is important to know that each demo application typically is much smaller that the full code asset typically, this is because we want the demos to be leveraged to showcase a viable subset of capabilities.
 
 ## iDaaS KIC (Knowledge, Insight and Conformance)
 This brand is specifically implemented to enable transactional insight into any data processing the components have done. This brand was developed to address compliance and conformance needs for implementations. 
 
 ### [iDaaS-KIC-Integration](iDaaS-KIC-Integration)
-Shows the iDaaS KIC(Knowledge, Insight and Conformance) tier for enabling resources to see what the accelerators have processed. The platform currently supports JSON file based output and a RDBMS based implementation, the default provided is Postgres; however, it can be reconfigured to leverage ANY JDBC type 4 compliant database. You will just need to adjust the application.properties.
+Shows the iDaaS KIC (Knowledge, Insight and Conformance) brand is to provide resources to see what the accelerators have processed. The platform currently supports JSON file based output and a RDBMS based implementation, the default provided is Postgres; however, it can be reconfigured to leverage ANY JDBC type 4 compliant database. You will just need to adjust the application.properties.
 
 ## iDaaS Connect
 This section covers iDaaS Connect branded capabilities. This is integration to data systems. We have defined this specific branding to help us be try and be specific through naming.<br/>
