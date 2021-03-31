@@ -25,7 +25,7 @@ The following section is meant to define and also help visualize the general arc
 As you look at this visual notice we DO NOT take a target data position to build toward, we believe that is a customers to shape for their specific business needs. We are working on creating a demonstration to show a sample endpoint for strickly closing the loop on data processing. <br/>  
 
 # iDaaS Demos
-This section attempts to explain the specific iDaas Demos. It is important to know that each demo application typically is much smaller that the full code asset typically, this is because we want the demos to be leveraged to showcase a viable subset of capabilities.
+This section attempts to explain the specific iDaas Demos. It is important to know that each demo application typically is much smaller that the full code asset typically, this is because we want the demos to be leveraged to showcase a viable subset of capabilities. Within each demo there is all the needed supporting materials including visuals and detailed scenarios.
 
 ## iDaaS KIC (Knowledge, Insight and Conformance)
 This brand is specifically implemented to enable transactional insight into any data processing the components have done. This brand was developed to address compliance and conformance needs for implementations. 
