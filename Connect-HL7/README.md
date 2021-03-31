@@ -1,10 +1,11 @@
-# Demo-iDAAS-Connect-HL7
+# iDAAS Connect HL7
 Demonstration for iDAAS Connect HL7. iDAAS-Connect-HL7 specifically ONLY deals with enabling 
 iDAAS to process the healthcare industry standard HL7 based transactions ONLY. This demo repository
 will only demonstrate (ADT, ORM, ORU) while the full repository
 will support the following HL7 messages (ADT, ORM, ORU, MFN, MDM, PHA, SCH and VXU) 
 from any vendor and any version of HL7 v2.
 
+## Add-Ons
 This solution contains three supporting directories. The intent of these artifacts to enable
 resources to work locally: <br/>
 1. platform-scripts: support running amq, amq-streams (kafka) and doing very specific things with 
@@ -12,10 +13,34 @@ Kafka such as: creating/listing and deleting topics needed for this solution
 and also building and packaging the solution as well. All the scripts are named to describe their capabilities <br/>
 2. platform-testdata: sample transactions to leverage for using the platform. 
 
-## Scenario: Integration 
-This repository follows a very common general facility based implementation. The implementation
-is of a facility, we have named MCTN for an application we have named MMS. This implementation 
-specifically defines one HL7 socket server endpoint per datatype mentioned above.
+## Pre-Requisites
+For all iDaaS design patterns it should be assumed that you will either install as part of this effort, or have the following:
+
+1. An existing Kafka (or some flavor of it) up and running. Red Hat currently implements AMQ-Streams based on Apache Kafka; however, we
+have implemented iDaaS with numerous Kafka implementations. Please see the following files we have included to try and help: <br/>
+[Kafka](Kafka.md)<br/>
+[KafkaWindows](KafkaWindows.md)<br/>
+2. Some understanding of building, deploying Java artifacts and the commands associated
+3. An internet connection with active internet connectivity, this is to ensure that if any Maven commands are
+run and any libraries need to be pulled down they can.
+
+We also leverage [Kafka Tools](https://kafkatool.com/) to help us show Kafka details and transactions; however, you can leverage
+code or various other Kafka technologies ot view the topics.
+
+# Scenario(s)
+This section is intended to cover any scenarios covered within this demo.
+
+## Basic HL7 Message Integration 
+This repository follows a very common general clinical care implementation pattern. The implementation pattern involves one system sending data to 
+another system via the HL7/MLLP message standard. 
+
+|Identifier | Description |
+| ------------ | ----------- |
+| Healthcare Facility| MCTN |
+| Sending EMR/EHR | MMS |
+| HL7 Message Events | ADT (Admissions, Discharge and Transfers),ORM (Orders),ORU (Results) |
+<br/>
+It is important to know that for every HL7 Message Type/Event there is a specifically defined, and dedicated, HL7 socket server endpoint.
 
 ### Integration Data Flow Steps
 Here is a general visual intended to show the general data flow and how the accelerator design pattern is intended to work. <br/>
