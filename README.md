@@ -28,10 +28,10 @@ As you look at this visual notice we DO NOT take a target data position to build
 This section attempts yo explain the specific iDaas Demos.
 
 ## iDaaS KIC (Knowledge, Insight and Conformance)
-This brand is specifically implemented to enable transactional insight and 
+This brand is specifically implemented to enable transactional insight into any data processing the components have done. This brand was developed to address compliance and conformance needs for implementations. 
 
 ### [iDaaS-KIC-Integration](iDaaS-KIC-Integration)
-Shows the iDaaS KIC(Knowledge, Insight and Conformance) tier for enabling resources to see what the accelerators have processed.
+Shows the iDaaS KIC(Knowledge, Insight and Conformance) tier for enabling resources to see what the accelerators have processed. The platform currently supports JSON file based output and a RDBMS based implementation, the default provided is Postgres; however, it can be reconfigured to leverage ANY JDBC type 4 compliant database. You will just need to adjust the application.properties.
 
 ## iDaaS Connect
 This section covers iDaaS Connect branded capabilities. This is integration to data systems. We have defined this specific branding to help us be try and be specific through naming.<br/>
