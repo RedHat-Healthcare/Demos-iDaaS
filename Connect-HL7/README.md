@@ -59,23 +59,19 @@ Server socket (one socket per datatype) and typically stay connected.
     if the client does not get this in a timely manner it will resend the same message again until he receives an ACK).<br/>
     d. The acknowledgement is also sent to the auditing topic location.<br/>
     
-## Builds
-This section will cover both local and automated builds.
+# Running
+This section covers the running of the solution.
 
-### Local Builds
-Within the code base you can find the local build commands in the /platform-scripts directory
-1.  Run the build-solution.sh script
-It will run the maven commands to build and then package up the solution. The package will use the usual settings
-in the pom.xml file. It pulls the version and concatenates the version to the output jar it builds.
-Additionally, there is a copy statement to remove any specific version, so it outputs idaas-connect-hl7.jar
+## Kafka Server To Connect To
+In order for ANY processing to occur you must have a Kafka server running that this accelerator is configured to connect to.
+Please see the following files we have included to try and help: <br/>
+[Kafka](Kafka.md)<br/>
+[KafkaWindows](KafkaWindows.md)<br/>
 
-### Automated Builds
-Automated Builds are going to be done in Azure Pipelines
-
-## Running
+## Accelerator Configuration
 In order to run multiple iDaaS integration applications we had to ensure the internal http ports that
-the application uses. In order to do this we set the server.port property. We have tried to keep these internally
-separate. iDaaS Connect HL7 uses 9980. You can change this, but you will have to ensure other applications are not
+the application uses. In order to do this we MUST set the server.port property otherwise it defaults to port 8080 and ANY additional
+components will fail to start. iDaaS Connect HL7 uses 9980. You can change this, but you will have to ensure other applications are not
 using the port you specify.
 
 ```properties
@@ -109,22 +105,17 @@ idaas.schPort=10007
 idaas.vxuPort=10008
 ```
 
-# Getting Involved
-Here are a few ways you can get or stay involved.
- 
-## Ongoing Enhancements
-We maintain all enhancements within the Git Hub portal under the 
-<a href="https://github.com/RedHat-Healthcare/iDAAS-Connect-HL7/projects" target="_blank">projects tab</a>
+## Start The Engine!!!
+There are several options to start the Engine Up!!!
 
-## Defects/Bugs
-All defects or bugs should be submitted through the Git Hub Portal under the 
-<a href="https://github.com/RedHat-Healthcare/iDAAS-Connect-HL7/issues" target="_blank">issues tab</a>
+### Maven
+You can use Maven from the command line, you would need to go the specific directory where this code exists and has a pom.xml and then run the 
+command: mvn clean install
 
-## Chat and Collaboration
-You can always leverage <a href="https://redhathealthcare.zulipchat.com" target="_blank">Red Hat Healthcare's ZuilpChat area</a>
-and find all the specific areas for iDAAS-Connect-HL7. We look forward to any feedback!!
+### From Your Code Editor/IDE
+You can right click on Application.java file and select Run in the src directory
 
-If you would like to contribute feel free to, contributions are always welcome!!!! 
+
 
 Happy using and coding....
 
