@@ -30,7 +30,7 @@ This section attempts to explain the specific iDaas Demos. It is important to kn
 ## iDaaS KIC (Knowledge, Insight and Conformance)
 This brand is specifically implemented to enable transactional insight into any data processing the components have done. This brand was developed to address compliance and conformance needs for implementations. 
 
-### [iDaaS-KIC-Integration](iDaaS-KIC-Integration)
+### [iDaaS-KIC-Integration](https://github.com/RedHat-Healthcare/iDaaS-Demos/tree/master/Route-DataDistribution)
 Shows the iDaaS KIC (Knowledge, Insight and Conformance) brand is to provide resources to see what the accelerators have processed. The platform currently supports JSON file based output and a RDBMS based implementation, the default provided is Postgres; however, it can be reconfigured to leverage ANY JDBC type 4 compliant database. You will just need to adjust the application.properties.
 
 ## iDaaS Connect
