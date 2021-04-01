@@ -72,7 +72,7 @@ public class CamelConfiguration extends RouteBuilder {
   }
 
   private String getHL7Uri(int port) {
-    String s = "netty4:tcp:0.0.0.0:" + port + "?sync=true&decoder=#hl7Decoder&encoder=#hl7Encoder";
+    String s = "netty4:tcp://0.0.0.0:" + port + "?sync=true&decoder=#hl7Decoder&encoder=#hl7Encoder";
     return s;
   }
 

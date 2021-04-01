@@ -19,14 +19,14 @@ package com.redhat.idaas.connect.hl7;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.system.ApplicationPidFileWriter;
+//import org.springframework.boot.system.ApplicationPidFileWriter;
 
 @SpringBootApplication
 @EnableConfigurationProperties(ConfigProperties.class)
 public class Application {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
-        app.addListeners(new ApplicationPidFileWriter("./bin/shutdown.pid"));
+        //app.addListeners(new ApplicationPidFileWriter("./bin/shutdown.pid"));
         app.run(args);
     }
 }
