@@ -36,37 +36,37 @@ Shows the iDaaS KIC (Knowledge, Insight and Conformance) brand is to provide res
 ## iDaaS Connect
 This section covers iDaaS Connect branded capabilities. This is integration to data systems. We have defined this specific branding to help us be try and be specific through naming.<br/>
 
-### [Connect-Aggregator](Connect-Aggregator)
+### [Connect-Aggregator](https://github.com/RedHat-Healthcare/iDaaS-Demos/tree/master/Connect-Aggregator)
 Connect Aggregator specifically addresses how to take data from multiple sources identify key attributes to ensure
 you only send one transaaction out.
 
-### [Connect-BlueButton](Connect-BlueButton)
+### [Connect-BlueButton](https://github.com/RedHat-Healthcare/iDaaS-Demos/tree/master/Connect-BlueButton)
 This project fetches Medicare data of an authenticated beneficiary through the Blue Button API and sends it to a Kafka topic. iDaaS Connect BlueButton: This is specifically designed to support the [https://bluebutton.cms.gov/] (Blue Button/CARIN) requirements and demonstrates direct integration with
 CMS Blue Button platform. <br/>
 
-### [Connect-EDI](Connect-EDI)
+### [Connect-EDI](https://github.com/RedHat-Healthcare/iDaaS-Demos/tree/master/Connect-EDI)
 Electronic Data Interchange (EDI) is the automated transfer of data between a care provider and a payer.  EDI enables payers and care providers to send and receive information faster, often at a lower cost.
 
-### [Connect-FHIR](Connect-FHIR)
+### [Connect-FHIR](https://github.com/RedHat-Healthcare/iDaaS-Demos/tree/master/Connect-FHIR)
 Demo of iDAAS Connect FHIR capabilities, this solution is intended to enable resources to get up and running and build
 a quick understanding of the iDAAS Connect FHIR overall capabilities. This is intended to deal with ALL aspects of [https://www.hl7.org/fhir/] (CMS Interoperability Final Rule) efforts specific to FHIR. It is important to note that this supports both FHIR Resources and Bundles as well.<br/>
 
-### [Connect-FHIR-DataTagging](Connect-FHIR-DataTagging)
+### [Connect-FHIR-DataTagging](https://github.com/RedHat-Healthcare/iDaaS-Demos/tree/master/Connect-FHIR-DataTagging)
 Demo of iDAAS Connect FHIR capabilities and invokes real time data parsing and transformation with FHIR data.
 
-### [Connect-HL7](Connect-HL7)
+### [Connect-HL7](https://github.com/RedHat-Healthcare/iDaaS-Demos/tree/master/Connect-HL7)
 iDAAS-Connect-HL7 specifically deals with enabling iDAAS to process the healthcare industry standard HL7 based transactions ONLY.  [http://www.hl7.org/implement/standards/product_section.cfm?section=13] (HL7 Protocol).<br/>
 
-### [Connect-ThirdParty](Connect-ThirdParty)
+### [Connect-ThirdParty](https://github.com/RedHat-Healthcare/iDaaS-Demos/tree/master/Connect-ThirdParty)
 Enables iDAAS to third party connectivity.  This includes: RDBMS, Kafka, Mainframe, Files, SFTP, and many others.The ONLY limitation is the [https://camel.apache.org/components/latest/] (Camel Supported Adapters)<br/>
 
 ## iDaaS Route
 
-### [Route-DataDistribution](Route-DataDistribution)
+### [Route-DataDistribution](https://github.com/RedHat-Healthcare/iDaaS-Demos/tree/master/Route-DataDistribution)
 Route Data Distribution specifically addresses data connectivity and data distribution of information.
 
 ## iDaaS DREAM
 The iDaaS DREAM brand deals with branded assets that are built through business proces/decision management, process automation or complex event processing.
 
-### [DREAM](DREAM)
+### [DREAM](https://github.com/RedHat-Healthcare/iDaaS-Demos/tree/master/DREAM)
 Showcase the ability to route data real time and create new topics on demand as needed to help facilitate information processing and addressing needs for business in real time.
