@@ -18,11 +18,11 @@ For all iDaaS design patterns it should be assumed that you will either install 
 
 1. An existing Kafka (or some flavor of it) up and running. Red Hat currently implements AMQ-Streams based on Apache Kafka; however, we
 have implemented iDaaS with numerous Kafka implementations. Please see the following files we have included to try and help: <br/>
-[Kafka](Kafka.md)<br/>
-[KafkaWindows](KafkaWindows.md)<br/>
-2. Some understanding of building, deploying Java artifacts and the commands associated
+[Kafka](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/Kafka.md)<br/>
+[KafkaWindows](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/KafkaWindows.md)<br/>
+2. Some understanding of building, deploying Java artifacts and the commands associated. If using Maven commands then Maven would need to be intalled and runing for the environment you are using. More details about Maven can be found [here](https://maven.apache.org/install.html)<br/>
 3. An internet connection with active internet connectivity, this is to ensure that if any Maven commands are
-run and any libraries need to be pulled down they can.
+run and any libraries need to be pulled down they can.<br/>
 
 We also leverage [Kafka Tools](https://kafkatool.com/) to help us show Kafka details and transactions; however, you can leverage
 code or various other Kafka technologies ot view the topics.
@@ -65,10 +65,11 @@ This section covers the running of the solution.
 ## Kafka Server To Connect To
 In order for ANY processing to occur you must have a Kafka server running that this accelerator is configured to connect to.
 Please see the following files we have included to try and help: <br/>
-[Kafka](Kafka.md)<br/>
-[KafkaWindows](KafkaWindows.md)<br/>
+[Kafka](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/Kafka.md)<br/>
+[KafkaWindows](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/KafkaWindows.md)<br/>
 
-## Accelerator Configuration
+## Design Pattern/Accelerator Configuration
+All iDaaS Design Pattern/Accelelrators have application.properties files to enable some level of reusability of code and simplfying configurational enhancements.<br/>
 In order to run multiple iDaaS integration applications we had to ensure the internal http ports that
 the application uses. In order to do this we MUST set the server.port property otherwise it defaults to port 8080 and ANY additional
 components will fail to start. iDaaS Connect HL7 uses 9980. You can change this, but you will have to ensure other applications are not
@@ -104,7 +105,6 @@ idaas.mdmPort=10006
 idaas.schPort=10007
 idaas.vxuPort=10008
 ```
-
 ## Start The Engine!!!
 There are several options to start the Engine Up!!!
 
