@@ -50,25 +50,28 @@ Here is a general visual intended to show the general data flow and how the acce
 Server socket (one socket per datatype) and typically stay connected.
 2. The HL7 client will send a single HL7 based transaction to the HL7 server.
 3. iDAAS Connect HL7 will do the following actions:<br/>
-    a. Receive the HL7 message. Internally, it will audit the data it received to 
-    a specifically defined topic.<br/>
+    a. Receive the HL7 message. Internally, it will audit the data it received to a specifically defined topic.<br/>
     b. The HL7 message will then be processed to a specifically defined topic for this implementation. There is a 
     specific topic pattern -  for the facility and application each data type has a specific topic define for it.
-    For example: MCTN_MMS_ADT, MCTN_MMS_ORM, etc. <br/>
+    For example: Admissions: MCTN_MMS_ADT, Orders: MCTN_MMS_ORM, Results: MCTN_MMS_ORU, etc.. <br/>
     c. An acknowledgement will then be sent back to the hl7 client (this tells the client he can send the next message,
     if the client does not get this in a timely manner it will resend the same message again until he receives an ACK).<br/>
     d. The acknowledgement is also sent to the auditing topic location.<br/>
-    
-# Running
-This section covers the running of the solution.
 
-## Kafka Server To Connect To
+# Start The Engine!!!
+
+This section covers the running of the solution. There are several options to start the Engine Up!!!
+
+## Step 1: Kafka Server To Connect To
 In order for ANY processing to occur you must have a Kafka server running that this accelerator is configured to connect to.
 Please see the following files we have included to try and help: <br/>
 [Kafka](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/Kafka.md)<br/>
 [KafkaWindows](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/KafkaWindows.md)<br/>
 
-## Design Pattern/Accelerator Configuration
+## Step 2: Running the App: Maven or Code Editor
+This section covers how to get the application started.
+
+### Design Pattern/Accelerator Configuration
 All iDaaS Design Pattern/Accelelrators have application.properties files to enable some level of reusability of code and simplfying configurational enhancements.<br/>
 In order to run multiple iDaaS integration applications we had to ensure the internal http ports that
 the application uses. In order to do this we MUST set the server.port property otherwise it defaults to port 8080 and ANY additional
@@ -78,8 +81,7 @@ using the port you specify.
 ```properties
 server.port=9980
 ```
-
-Once built you can run the solution by executing `./platform-scripts/start-solution.sh`. 
+Once built you can run the solution by executing `./platform-scripts/start-solution.sh`.
 The script will startup Kafka and iDAAS server.
 
 Alternatively, if you have a running instance of Kafka, you can start a solution with:
@@ -105,16 +107,13 @@ idaas.mdmPort=10006
 idaas.schPort=10007
 idaas.vxuPort=10008
 ```
-## Start The Engine!!!
-There are several options to start the Engine Up!!!
 
-### Maven
-You can use Maven from the command line, you would need to go the specific directory where this code exists and has a pom.xml and then run the 
+### Running the App: Maven
+You can use Maven from the command line, you would need to go the specific directory where this code exists and has a pom.xml and then run the
 command: mvn clean install
 
-### From Your Code Editor/IDE
-You can right click on Application.java file and select Run in the src directory
-
+### Running the App: From Your Code Editor/IDE
+You can right click on Application.java file and select Run in the src directory.
 
 
 Happy using and coding....
