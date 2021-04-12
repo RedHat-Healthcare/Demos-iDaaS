@@ -22,6 +22,7 @@ import org.apache.camel.ExchangePattern;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.MultipleConsumersSupport;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.fhir.FhirJsonDataFormat;
 import org.apache.camel.component.kafka.KafkaComponent;
 import org.apache.camel.component.kafka.KafkaConstants;
 import org.apache.camel.component.kafka.KafkaEndpoint;
@@ -129,6 +130,66 @@ public class CamelConfiguration extends RouteBuilder {
         .log(LoggingLevel.INFO, log, "HL7 Admissions Message: [${body}]")
         //To invoke Logging
         //.to("direct:logging")
+    ;
+
+    /*
+     *  Binary Resource Upload
+     */
+    from("servlet://binary")
+            .routeId("FHIRBinary")
+            .convertBodyTo(String.class)
+            // set Auditing Properties
+            .setProperty("processingtype").constant("data")
+            .setProperty("appname").constant("iDAAS-Connect-FHIR")
+            .setProperty("messagetrigger").constant("Binary")
+            .setProperty("component").simple("${routeId}")
+            .setProperty("camelID").simple("${camelId}")
+            .setProperty("exchangeID").simple("${exchangeId}")
+            .setProperty("internalMsgID").simple("${id}")
+            .setProperty("bodyData").simple("${body}")
+            .setProperty("processname").constant("Input")
+            .setProperty("auditdetails").constant("Binary message received")
+            // iDAAS DataHub Processing
+            .wireTap("direct:auditing")
+            // Send To Topic
+            .convertBodyTo(String.class).to(getKafkaTopicUri("fhirsvr_binary"))
+            // Unmarshal with FHIR
+            // need to add the FHIR centric Marshal
+            //.unmarshal()
+            // Audit UnMarshal Event
+            // set Auditing Properties
+            .setProperty("processingtype").constant("data")
+            .setProperty("appname").constant("iDAAS-Connect-FHIR")
+            .setProperty("industrystd").constant("FHIR")
+            .setProperty("messagetrigger").constant("Binary")
+            .setProperty("component").simple("${routeId}")
+            .setProperty("processname").constant("Response")
+            .setProperty("camelID").simple("${camelId}")
+            .setProperty("exchangeID").simple("${exchangeId}")
+            .setProperty("internalMsgID").simple("${id}")
+            .setProperty("bodyData").simple("${body}")
+            .setProperty("auditdetails").constant("Binary UnMarshall Activity")
+            // iDAAS DataHub Processing
+            .wireTap("direct:auditing")// Invoke External FHIR Server
+            // Send to FHIR Server
+            .setHeader(Exchange.CONTENT_TYPE,constant("application/json"))
+            .to(getFHIRServerUri("Binary"))
+            //Process Response
+            .convertBodyTo(String.class)
+            // set Auditing Properties
+            .setProperty("processingtype").constant("data")
+            .setProperty("appname").constant("iDAAS-Connect-FHIR")
+            .setProperty("industrystd").constant("FHIR")
+            .setProperty("messagetrigger").constant("Binary")
+            .setProperty("component").simple("${routeId}")
+            .setProperty("processname").constant("Response")
+            .setProperty("camelID").simple("${camelId}")
+            .setProperty("exchangeID").simple("${exchangeId}")
+            .setProperty("internalMsgID").simple("${id}")
+            .setProperty("bodyData").simple("${body}")
+            .setProperty("auditdetails").constant("Binary response message received")
+            // iDAAS DataHub Processing
+            .wireTap("direct:auditing")// Invoke External FHIR Server
     ;
 
     /*
