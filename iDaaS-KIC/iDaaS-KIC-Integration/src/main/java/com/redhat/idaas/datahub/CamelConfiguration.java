@@ -61,7 +61,7 @@ public class CamelConfiguration extends RouteBuilder {
 
     // Output to configured RDBMS ONLY is isStoreinDb = true
     if (config.isStoreInDb()) {
-      //route.multicast().parallelProcessing().to("direct:file", "direct:db");
+      route.multicast().parallelProcessing().to("direct:file", "direct:db");
       RouteDefinition from = from("direct:db");
       String columns = String.join(",", AuditMessage.DB_PERSISTABLE_FIELDS);
       List<String> namedParams = new ArrayList<>();
@@ -74,13 +74,14 @@ public class CamelConfiguration extends RouteBuilder {
       from.setBody(simple("INSERT INTO " + config.getDbTableName() + " (" + columns + ") VALUES (" + params + ")"))
               .to("jdbc:dataSource?useHeadersAsParameters=true");
     }
-    else {
-      //  route.to("direct:file");
-      //  Output JSON Documents ONLY is isStoreinFS = true
-            if (config.isStoreInFS()) {
-              from("direct:file").marshal().json(JsonLibrary.Jackson)
+    else
+    {
+        route.to("direct:file");
+    }
+    //  Output JSON Documents ONLY is isStoreinFS = true
+    if (config.isStoreInFs()) {
+      from("direct:file").marshal().json(JsonLibrary.Jackson)
               .to("file:" + config.getAuditDir());
-      }
     }
   }
 }

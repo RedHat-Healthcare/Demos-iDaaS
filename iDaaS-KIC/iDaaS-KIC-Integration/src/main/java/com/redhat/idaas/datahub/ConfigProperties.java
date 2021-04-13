@@ -22,11 +22,9 @@ public class ConfigProperties {
 
     private String kafkaBrokers;
     private String kafkaTopicName;
-
     private String auditDir;
-
     private Boolean storeInDb;
-    private Boolean storeInFS;
+    private Boolean storeInFs;
     private String dbDriverClassName;
     private String dbUrl;
     private String dbUsername;
@@ -75,6 +73,16 @@ public class ConfigProperties {
 
     public Boolean getStoreInDb() {
         return storeInDb;
+    }
+
+    public boolean isStoreInFs() { return storeInFs; }
+
+    public void setStoreInFs(boolean storeInFs) {
+        this.storeInFs = storeInFs;
+    }
+
+    public Boolean getStoreInFs() {
+        return storeInFs;
     }
 
     public boolean isCreateDbTable() {
@@ -129,11 +137,4 @@ public class ConfigProperties {
         this.dbTableName = dbTableName;
     }
 
-    public boolean isStoreInFS() {
-        return storeInFS;
-    }
-
-    public void setStoreInFS(boolean storeInFS) {
-        this.storeInFS = storeInFS;
-    }
 }
