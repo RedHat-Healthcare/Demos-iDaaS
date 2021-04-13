@@ -31,7 +31,7 @@ public class DataSourceConfiguration {
         DataSource dataSource = dataSourceBuilder.build();
 
         if (config.isCreateDbTable()) {
-            String fields = String.join(" VARCHAR(256), ", AuditMessage.DB_PERSISTABLE_FIELDS) + " VARCHAR(256)";
+            String fields = String.join(" VARCHAR(256), ", AuditMessage.DB_PERSISTABLE_FIELDS) + " VARCHAR(99)";
 
             try (Statement statement = dataSource.getConnection().createStatement()) {
                 statement.execute("CREATE TABLE IF NOT EXISTS " + config.getDbTableName() + "(" +
