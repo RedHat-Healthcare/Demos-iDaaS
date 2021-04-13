@@ -49,6 +49,9 @@ public class CamelConfiguration extends RouteBuilder {
     KafkaComponent kafka = new KafkaComponent();
     return kafka;
   }
+  private String getKafkaTopicUri(String topic) {
+    return "kafka:" + topic + "?brokers=" + config.getKafkaBrokers();
+  }
 
   @Override
   public void configure() {
@@ -71,15 +74,13 @@ public class CamelConfiguration extends RouteBuilder {
       from.setBody(simple("INSERT INTO " + config.getDbTableName() + " (" + columns + ") VALUES (" + params + ")"))
               .to("jdbc:dataSource?useHeadersAsParameters=true");
     }
-    //else {
-    //  route.to("direct:file");
-    //}
-
-    // Output JSON Documents ONLY is isStoreinFS = true
-    if (config.isStoreInFS()) {
-      from("direct:file").marshal().json(JsonLibrary.Jackson)
+    else {
+      //  route.to("direct:file");
+      //  Output JSON Documents ONLY is isStoreinFS = true
+            if (config.isStoreInFS()) {
+              from("direct:file").marshal().json(JsonLibrary.Jackson)
               .to("file:" + config.getAuditDir());
+      }
     }
-
   }
 }
