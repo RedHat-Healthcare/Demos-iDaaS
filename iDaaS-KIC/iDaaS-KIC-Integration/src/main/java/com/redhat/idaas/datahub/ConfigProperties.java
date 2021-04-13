@@ -26,6 +26,7 @@ public class ConfigProperties {
     private String auditDir;
 
     private Boolean storeInDb;
+    private Boolean storeInFS;
     private String dbDriverClassName;
     private String dbUrl;
     private String dbUsername;
@@ -126,5 +127,13 @@ public class ConfigProperties {
 
     public void setDbTableName(String dbTableName) {
         this.dbTableName = dbTableName;
+    }
+
+    public boolean isStoreInFS() {
+        return storeInFS;
+    }
+
+    public void setStoreInFS(boolean storeInFS) {
+        this.storeInFS = storeInFS;
     }
 }

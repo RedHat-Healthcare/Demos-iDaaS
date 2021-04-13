@@ -67,6 +67,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-jdbc</artifactId>
     </dependency>
+    <!-- XML Marhall Unmarshall -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jackson</artifactId>
+      <version>2.23.2.fuse-760030-redhat-00001</version>
+    </dependency>
     <!-- Added for Camel Kafka -->
     <dependency>
       <groupId>org.apache.camel</groupId>
@@ -77,24 +83,34 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
-    <!-- RDBMS for Data Platform Needs -->
+    <!-- JDBC for RDBMS for Data Platform Needs -->
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jdbc</artifactId>
       <version>2.23.2.fuse-760030-redhat-00001</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jackson</artifactId>
-      <version>2.23.2.fuse-760030-redhat-00001</version>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.22</version>
     </dependency>
     <dependency>
-      <groupId>org.postgresql</groupId>
+      <groupId>postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.2.18</version>
+      <version>9.1-901-1.jdbc4</version>
+    </dependency>
+    <dependency>
+      <groupId>net.snowflake</groupId>
+      <artifactId>snowflake-jdbc</artifactId>
+      <version>3.13.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>3.12.8</version>
     </dependency>
   </dependencies>
-  
+
   <repositories>
     <repository>
       <id>red-hat-ga-repository</id>
