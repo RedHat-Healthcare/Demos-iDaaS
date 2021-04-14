@@ -13,7 +13,7 @@
  *  implied.  See the License for the specific language governing
  *  permissions and limitations under the License.
  */
-package com.redhat.idaas.datahub;
+package com.redhat.idaas.kic;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
@@ -28,7 +28,6 @@ import org.apache.camel.component.kafka.KafkaEndpoint;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
 @Component
 public class CamelConfiguration extends RouteBuilder {
