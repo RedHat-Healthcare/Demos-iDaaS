@@ -36,6 +36,9 @@ import org.springframework.stereotype.Component;
 import sun.util.calendar.BaseCalendar;
 import java.time.LocalDate;
 
+import static org.apache.camel.builder.ProcessorBuilder.setHeader;
+import static org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest.to;
+
 @Component
 public class CamelConfiguration extends RouteBuilder {
   private static final Logger log = LoggerFactory.getLogger(CamelConfiguration.class);
@@ -148,7 +151,7 @@ public class CamelConfiguration extends RouteBuilder {
             .setProperty("internalMsgID").simple("${id}")
             .setProperty("bodyData").simple("${body}")
             .setProperty("processname").constant("Input")
-            .setProperty("auditdetails").constant("Binary message received")
+            .setProperty("auditdetails").constant("Binary resource/bundle received")
             // iDAAS DataHub Processing
             .wireTap("direct:auditing")
             // Send To Topic
@@ -187,7 +190,7 @@ public class CamelConfiguration extends RouteBuilder {
             .setProperty("exchangeID").simple("${exchangeId}")
             .setProperty("internalMsgID").simple("${id}")
             .setProperty("bodyData").simple("${body}")
-            .setProperty("auditdetails").constant("Binary response message received")
+            .setProperty("auditdetails").constant("Binary response resource/bundle received")
             // iDAAS DataHub Processing
             .wireTap("direct:auditing")// Invoke External FHIR Server
     ;
@@ -212,7 +215,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
         .setProperty("processname").constant("Input")
-        .setProperty("auditdetails").constant("Allergy Intolerance message received")
+        .setProperty("auditdetails").constant("Allergy Intolerance resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
         // Send To Topic
@@ -232,9 +235,9 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("exchangeID").simple("${exchangeId}")
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
-        .setProperty("auditdetails").constant("Allergy Intolerance response message received")
+        .setProperty("auditdetails").constant("Allergy Intolerance response resource/bundle received")
         // iDAAS DataHub Processing
-        .wireTap("direct:auditing")// Invoke External FHIR Server
+        .wireTap("direct:auditing")
     ;
 
     from("servlet://condition")
@@ -251,7 +254,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
         .setProperty("processname").constant("Input")
-        .setProperty("auditdetails").constant("Condition message received")
+        .setProperty("auditdetails").constant("Condition resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
         // Send To Topic
@@ -271,7 +274,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("exchangeID").simple("${exchangeId}")
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
-        .setProperty("auditdetails").constant("condition FHIR response message received")
+        .setProperty("auditdetails").constant("condition FHIR response resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
     ;
@@ -289,7 +292,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
         .setProperty("processname").constant("Input")
-        .setProperty("auditdetails").constant("Consent message received")
+        .setProperty("auditdetails").constant("Consent resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
         // Send To Topic
@@ -309,7 +312,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("exchangeID").simple("${exchangeId}")
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
-        .setProperty("auditdetails").constant("consent FHIR response message received")
+        .setProperty("auditdetails").constant("consent FHIR response resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
     ;
@@ -328,7 +331,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("exchangeID").simple("${exchangeId}")
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
-        .setProperty("auditdetails").constant("account message received")
+        .setProperty("auditdetails").constant("account resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
         // Send To Topic
@@ -349,7 +352,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("exchangeID").simple("${exchangeId}")
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
-        .setProperty("auditdetails").constant("account FHIR response message received")
+        .setProperty("auditdetails").constant("account FHIR response resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
     ;
@@ -367,7 +370,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("exchangeID").simple("${exchangeId}")
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
-        .setProperty("auditdetails").constant("claim message received")
+        .setProperty("auditdetails").constant("claim resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
         // Send To Topic
@@ -388,7 +391,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("exchangeID").simple("${exchangeId}")
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
-        .setProperty("auditdetails").constant("claim FHIR response message received")
+        .setProperty("auditdetails").constant("claim FHIR response resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
     ;
@@ -408,7 +411,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
         .setProperty("processname").constant("Input")
-        .setProperty("auditdetails").constant("Measure message received")
+        .setProperty("auditdetails").constant("Measure resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
         // Send To Topic
@@ -429,7 +432,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("exchangeID").simple("${exchangeId}")
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
-        .setProperty("auditdetails").constant("measure FHIR response message received")
+        .setProperty("auditdetails").constant("measure FHIR response resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
     ;
@@ -447,7 +450,7 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
         .setProperty("processname").constant("Input")
-        .setProperty("auditdetails").constant("Measure Report message received")
+        .setProperty("auditdetails").constant("Measure Report resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
         // Send To Topic
@@ -468,10 +471,50 @@ public class CamelConfiguration extends RouteBuilder {
         .setProperty("exchangeID").simple("${exchangeId}")
         .setProperty("internalMsgID").simple("${id}")
         .setProperty("bodyData").simple("${body}")
-        .setProperty("auditdetails").constant("measurereport FHIR response message received")
+        .setProperty("auditdetails").constant("measurereport FHIR response resource/bundle received")
         // iDAAS DataHub Processing
         .wireTap("direct:auditing")
     ;
 
+    // Questonaire
+    from("servlet://questionnaire")
+            .routeId("FHIRQuestionnaire")
+            .convertBodyTo(String.class)
+            // set Auditing Properties
+            .setProperty("processingtype").constant("data")
+            .setProperty("appname").constant("iDAAS-Connect-FHIR")
+            .setProperty("industrystd").constant("FHIR")
+            .setProperty("messagetrigger").constant("Questionnaire")
+            .setProperty("component").simple("${routeId}")
+            .setProperty("camelID").simple("${camelId}")
+            .setProperty("exchangeID").simple("${exchangeId}")
+            .setProperty("internalMsgID").simple("${id}")
+            .setProperty("bodyData").simple("${body}")
+            .setProperty("processname").constant("Input")
+            .setProperty("auditdetails").constant("Questionnaire resource/bundle received")
+            // iDAAS DataHub Processing
+            .wireTap("direct:auditing")
+            // Send To Topic
+            .convertBodyTo(String.class).to(getKafkaTopicUri("fhirsvr_questionnaire"))
+            // Invoke External FHIR Server
+            .setHeader(Exchange.CONTENT_TYPE,constant("application/json"))
+            .to(getFHIRServerUri("Questionnaire"))
+            //Process Response
+            .convertBodyTo(String.class)
+            // set Auditing Properties
+            .setProperty("processingtype").constant("data")
+            .setProperty("appname").constant("iDAAS-Connect-FHIR")
+            .setProperty("industrystd").constant("FHIR")
+            .setProperty("messagetrigger").constant("measurereport")
+            .setProperty("component").simple("${routeId}")
+            .setProperty("processname").constant("Response")
+            .setProperty("camelID").simple("${camelId}")
+            .setProperty("exchangeID").simple("${exchangeId}")
+            .setProperty("internalMsgID").simple("${id}")
+            .setProperty("bodyData").simple("${body}")
+            .setProperty("auditdetails").constant("Questionnaire FHIR response resource/bundle received")
+            // iDAAS DataHub Processing
+            .wireTap("direct:auditing")
+    ;
   }
 }

@@ -25,45 +25,39 @@ public class ConfigProperties {
     private String kafkaBrokers;
 
     private String fhirVendor;
-
+    private Boolean processToFHIRServer;
     private String ibmURI;
     private String hapiURI;
     private String microsoftURI;
-    private String processToFHIR;
 
     public String getKafkaBrokers() {
         return kafkaBrokers;
     }
 
+    public boolean processToFHIRServer() { return processToFHIRServer;}
+    public void processToFHIRServer(Boolean processToFHIRServer) { this.processToFHIRServer = processToFHIRServer; }
+
     public String getFhirVendor() {
         return fhirVendor;
     }
-
     public String getIbmURI() {
         return ibmURI;
     }
-
     public String getHapiURI() {
         return hapiURI;
     }
-
     public String getMicrosoftURI() {
         return microsoftURI;
-    }
-    public String getProcessToFHIR() {
-        return processToFHIR;
     }
 
     public void setKafkaBrokers(String KafkaBrokers) {
         this.kafkaBrokers = KafkaBrokers;
     }
-
     public void setFhirVendor(String FhirVendor) {
         this.fhirVendor = FhirVendor;
     }
-
     public void setIbmURI (String ibmURI) { this.ibmURI = ibmURI; }
     public void setHapiURI (String hapiURI) { this.hapiURI = hapiURI; }
     public void setMicrosoftURI (String microsoftURI) { this.microsoftURI = microsoftURI; }
-    public void setProcessToFHIR (String processToFHIR) { this.processToFHIR = processToFHIR; }
+
 }
