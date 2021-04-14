@@ -43,15 +43,13 @@ JSON events and processed to whatever technology makes the implementation happy.
 ## Platform Implementation
 
 ## Scenario: Integration 
-This repository follows a very common implementation. The implementation
-is processing all the data from the topic named opmgmt_transactions.
+The implementation processes all the data from the topic named opmgmt_transactions.
 
 ## Integration Data Flow Steps
- 
-1. The Topic opmgmt_transactions is subscribed to for transactions.<br/>
-2. The data will be processed from the queue and the header attributes will all be parsed.<br/>
-3. The header attributes should then be persisted to the appropriate database fields in appauditing_auditlog and
-   appauditing_auditlog_msgs depending upon data attributes.<br/>
+1. The integration application subscribes to all the data from the topic opmgmt_transactions topic.<br/>
+2. The data will be processed from the topic and the header attributes will all be parsed.<br/>
+3. Depending on the settings in the application.properties the header attributes can go to files, a relational
+database table named insight within the kic database or both. These actions are done through parsing the header attributes.<br/>
     
 # Builds
 This section will cover both local and automated builds.
