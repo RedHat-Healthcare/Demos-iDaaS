@@ -1,4 +1,4 @@
-# Demo-iDAAS-Route-DataDistribution
+# iDAAS Route DataDistribution
 iDAAS Route data distribution is part of the iDAAS Connect family within iDAAS. iDAAS Connect is the family of capabilities
 that specifically address data connectivity and data distribution of information and iDaaS Route Data Distribution
 is all about how you can distribute the data. Before data can be distributed it MUST enter into the iDAAS platform from one one of the iDAAS Connect family that help
