@@ -5,10 +5,7 @@ for auditing and logging activities.
 ## Add-Ons
 This solution contains three supporting directories. The intent of these artifacts to enable
 resources to work locally: <br/>
-1. platform-addons: needed software to run locally. This currently contains amq-streams-1.5 (which is the upstream of Kafka 2.6)<br/>
-2. platform-scripts: support running kafka, creating/listing and deleting topics needed for this solution
-and also building and packaging the solution as well. All the scripts are named to describe their capabilities <br/>
-3. platform-datatier: DDL that support this implementation 
++ platform-datatier: DDL that support this implementation 
 
 ## Pre-Requisites
 For all iDaaS design patterns it should be assumed that you will either install as part of this effort, or have the following:
