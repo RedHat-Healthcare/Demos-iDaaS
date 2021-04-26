@@ -1,11 +1,16 @@
-name: CI for DREAM demo
+name: CI for Connect-HL7 demo
 
 on:
   pull_request:
     branches:
       - master
     paths:
-      - 'DREAM/**'
+      - 'Connect-HL7/**'
+  push:
+    branches:
+      - master
+    paths:
+      - 'Connect-HL7/**'
 
 jobs:
   publish:
@@ -22,4 +27,4 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
-        run: mvn -B clean verify --fae --file DREAM/pom.xml
+        run: mvn -B clean verify --fae --file Connect-HL7/pom.xml
