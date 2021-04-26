@@ -12,7 +12,7 @@ below for more details and specifics.
 ## Additional Artifacts/Apps/Data
 This solution contains three supporting directories. The intent of these artifacts to enable
 resources to work locally: <br/>
-1. platform-addons: add-ons potentially needed. We include the AMQ-Streams release here just in case its needed. We 
+1. platform-addons: add-ons potentially needed. We 
 have also included an additional file that has the settings if you are running IBM's FHIR server locally. Lastly, we have
 included an export of the workspace we have internally created within <a href="https://insomnia.rest/products/core/" target="_blank">
 Insomnia core</a>. The intent is to help by providing an export as a quick start to help. Simply import the server.xml file within the Insomnia-APITesting 
@@ -21,10 +21,10 @@ about AMQ-Streams (Kafka), we have included some base scripts for creating/listi
 and also building and packaging the solution as well. All the scripts are named to describe their capabilities. <br/>
 3. platform-testdata: sample transactions to leverage for using the platform. We have included FHIR message samples.
 
-## Scenario: Integration 
+# Scenario: Integration 
 This repository follows a very common general facility based implementation. 
 
-### Integration Data Flow Steps
+## Integration Data Flow Steps
 This data flow is a sample flow based on real world usage and needs. When the iDAAS-Connect-FHIR starts it 
 creates a servlet endpoint per defined FHIR Resource
 that can be leveraged immediately. To date the iDAAS-Connect-FHIR component fully supports all
@@ -42,7 +42,8 @@ running instance of iDAAS-Connect-FHIR.
 2. iDAAS-Connect-FHIR audits the inbound data.
 3. iDAAS-Connect-FHIR then processes the data to/from the configured FHIR server
 4. iDAAS-Connect-FHIR then processes the FHIR server response and audits it as well. 
-    
+ 
+ 
 ## Builds
 This section will cover both local and automated builds.
 
@@ -90,11 +91,6 @@ idaas.msoftURI=http://localhost:9999/microsoftapi/api/v4/
 # Testing
 We have made a recent change to leverage Insomnia Core for testing APIs.  Leverage the files included in the 
 platforms-addons/Insomnia-APITesting directory of this repository.
-
-# Kafka
-We have removed the detailed scripts that used to do numerous operations and activities as these are now mostly  
-supported within the Kafka technology natively.<br>
-<a href="https://github.com/RedHat-Healthcare/Demo-iDAAS-Connect-FHIR/blob/master/Kafka.md" target="_blank">Kafka</a><br/>
 
 ## FHIR Servers
 The platform is all about working with other technologies as needed. Please following the following links for any
