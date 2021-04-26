@@ -13,14 +13,14 @@ not differentiate and can process daat contained within bundles or directly as r
 ## Additional Artifacts/Apps/Data
 This solution contains three supporting directories. The intent of these artifacts to enable
 resources to work locally: <br/>
-1. platform-addons: add-ons potentially needed. We include the AMQ-Streams release here just in case its needed. We 
++ platform-addons: add-ons potentially needed. We include the AMQ-Streams release here just in case its needed. We
 have also included an additional file that has the settings if you are running IBM's FHIR server locally. Lastly, we have
 included an export of the workspace we have internally created within <a href="https://insomnia.rest/products/core/" target="_blank">
 Insomnia core</a>. The intent is to help by providing an export as a quick start to help. Simply import the server.xml file within the Insomnia-APITesting 
-2. platform-scripts: support running kafka, All of these are only intended to try and help developers if they are learning
++ platform-scripts: support running kafka, All of these are only intended to try and help developers if they are learning
 about AMQ-Streams (Kafka), we have included some base scripts for creating/listing and deleting topics needed for this solution
 and also building and packaging the solution as well. All the scripts are named to describe their capabilities. <br/>
-3. platform-testdata: sample transactions to leverage for using the platform. We have included FHIR message samples.
++ platform-testdata: sample transactions to leverage for using the platform. We have included FHIR message samples.
 
 ## Scenario: Integration 
 This repository follows a very common general facility based implementation. Below is a visual intended to help show a general data flow so as you read the steps it
@@ -47,22 +47,30 @@ running instance of iDAAS-Connect-FHIR.
 3. iDAAS-Connect-FHIR then processes the data to/from the configured FHIR server
 4. iDAAS-Connect-FHIR then processes the FHIR server response and audits it as well. 
     
-## Builds
-This section will cover both local and automated builds.
+# Start The Engine!!!
+This section covers the running of the solution. There are several options to start the Engine Up!!!
 
-### Local Builds
-Within the code base you can find the local build commands in the /platform-scripts directory
-1.  Run the build-solution.sh script
-It will run the maven commands to build and then package up the solution. The package will use the usual settings
-in the pom.xml file. It pulls the version and concatenates the version to the output jar it builds.
-Additionally, there is a copy statement to remove any specific version, so it outputs idaas-connect-hl7.jar
+## Step 1: Kafka Server To Connect To
+In order for ANY processing to occur you must have a Kafka server running that this accelerator is configured to connect to.
+Please see the following files we have included to try and help: <br/>
+[Kafka](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/Kafka.md)<br/>
+[KafkaWindows](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/KafkaWindows.md)<br/>
 
-### Automated Builds
-Automated Builds are going to be done in Azure Pipelines
-
-## Running
-Once built you can run the solution by executing `./platform-scripts/start-solution.sh`. 
-The script will startup Kafka and iDAAS server.
+## Step 2: Running the App: Maven or Code Editor
+This section covers how to get the application started.
++ Maven: go to the directory of where you have this code. Specifically, you want to be at the same level as the POM.xml file and execute the
+following command: <br/>
+```
+mvn clean install
+ ```
+Depending upon if you have every run this code before and what libraries you have already in your local Maven instance it could take a few minutes.
++ Code Editor: You can right click on the Application.java in the /src/<application namespace> and select Run
+### Design Pattern/Accelerator Configuration
+All iDaaS Design Pattern/Accelelrators have application.properties files to enable some level of reusability of code and simplfying configurational enhancements.<br/>
+In order to run multiple iDaaS integration applications we had to ensure the internal http ports that
+the application uses. In order to do this we MUST set the server.port property otherwise it defaults to port 8080 and ANY additional
+components will fail to start. iDaaS Connect HL7 uses 9980. You can change this, but you will have to ensure other applications are not
+using the port you specify.
 
 ## Customizing the Implementation - Application Properties 
 Alternatively, if you have a running instance of Kafka, you can start a solution with:

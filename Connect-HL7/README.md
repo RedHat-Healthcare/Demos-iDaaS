@@ -74,7 +74,13 @@ Please see the following files we have included to try and help: <br/>
 
 ## Step 2: Running the App: Maven or Code Editor
 This section covers how to get the application started.
-
++ Maven: go to the directory of where you have this code. Specifically, you want to be at the same level as the POM.xml file and execute the
+following command: <br/>
+```
+mvn clean install
+ ```
+Depending upon if you have every run this code before and what libraries you have already in your local Maven instance it could take a few minutes.
++ Code Editor: You can right click on the Application.java in the /src/<application namespace> and select Run
 ### Design Pattern/Accelerator Configuration
 All iDaaS Design Pattern/Accelelrators have application.properties files to enable some level of reusability of code and simplfying configurational enhancements.<br/>
 In order to run multiple iDaaS integration applications we had to ensure the internal http ports that

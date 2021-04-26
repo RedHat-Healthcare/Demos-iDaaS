@@ -22,11 +22,31 @@ auto.offset.reset=earliest <br/>
 3. An internet connection with active internet connectivity, this is to ensure that if any Maven commands are
 run and any libraries need to be pulled down they can.<br/>
 
-# Demonstration
-The following are some key steps when running this solution to a demonstration.
+# Start The Engine!!!
+This section covers the running of the solution. There are several options to start the Engine Up!!!
 
-## Configuration
-Configure src/main/resources/application.properties with the prerequisite data, for example,
+## Step 1: Kafka Server To Connect To
+In order for ANY processing to occur you must have a Kafka server running that this accelerator is configured to connect to.
+Please see the following files we have included to try and help: <br/>
+[Kafka](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/Kafka.md)<br/>
+[KafkaWindows](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/KafkaWindows.md)<br/>
+
+## Step 2: Running the App: Maven or Code Editor
+This section covers how to get the application started.
++ Maven: go to the directory of where you have this code. Specifically, you want to be at the same level as the POM.xml file and execute the
+following command: <br/>
+```
+mvn clean install
+ ```
+Depending upon if you have every run this code before and what libraries you have already in your local Maven instance it could take a few minutes.
++ Code Editor: You can right click on the Application.java in the /src/<application namespace> and select Run
+### Design Pattern/Accelerator Configuration
+All iDaaS Design Pattern/Accelelrators have application.properties files to enable some level of reusability of code and simplfying configurational enhancements.<br/>
+In order to run multiple iDaaS integration applications we had to ensure the internal http ports that
+the application uses. In order to do this we MUST set the server.port property otherwise it defaults to port 8080 and ANY additional
+components will fail to start. iDaaS Connect HL7 uses 9980. You can change this, but you will have to ensure other applications are not
+using the port you specify.
+
 ```
 bluebutton.callback.path=callback
 bluebutton.callback.host=localhost
@@ -34,7 +54,7 @@ bluebutton.callback.port=8890
 ```
 http://localhost:8890/callback is the callback URL you registered with bluebutton.cms.gov. http://localhost:8890/bluebutton will be the service URL for iDAAS-Connect-BlueButton. 
 
-## Getting Started
+## Additional Notes/Helfgul Details
 * Download the [CSV file](https://bluebutton.cms.gov/synthetic_users_by_claim_count_full.csv) which contains 100 sample data with id, user name, and password.
 * Build the project by running `platform-scripts/build-solution.sh`
 * Start the project by running `platform-scripts/start-solution.sh`. It will start the Kafka cluster on port 9092 and the Fuse application which listens on port 8890.

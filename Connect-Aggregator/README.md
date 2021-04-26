@@ -47,15 +47,33 @@ a bar '|' delimited file and process it into a structure and persist the data in
 ## Builds
 This section will cover both local and automated builds.
 
-### Local Builds
-Within the code base you can find the local build commands in the /platform-scripts directory
-1.  Run the build-solution.sh script
-It will run the maven commands to build and then package up the solution. The package will use the usual settings
-in the pom.xml file. It pulls the version and concatenates the version to the output jar it builds.
-Additionally, there is a copy statement to remove any specific version, so it outputs idaas-connect-hl7.jar
+# Start The Engine!!!
+This section covers the running of the solution. There are several options to start the Engine Up!!!
 
-### Automated Builds
-Automated Builds are going to be done in Azure Pipelines
+## Step 1: Kafka Server To Connect To
+In order for ANY processing to occur you must have a Kafka server running that this accelerator is configured to connect to.
+Please see the following files we have included to try and help: <br/>
+[Kafka](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/Kafka.md)<br/>
+[KafkaWindows](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/KafkaWindows.md)<br/>
+
+## Step 2: Running the App: Maven, Code Editor or Command Line
+This section covers how to get the application started.
+his section covers how to get the application started.
++ Maven: go to the directory of where you have this code. Specifically, you want to be at the same level as the POM.xml file and execute the
+following command: <br/>
+```
+mvn clean install
+ ```
+Depending upon if you have every run this code before and what libraries you have already in your local Maven instance it could take a few minutes.
++ Code Editor: You can right click on the Application.java in the /src/<application namespace> and select Run
+
+### Design Pattern/Accelerator Configuration
+All iDaaS Design Pattern/Accelelrators have application.properties files to enable some level of reusability of code and simplfying configurational enhancements.<br/>
+In order to run multiple iDaaS integration applications we had to ensure the internal http ports that
+the application uses. In order to do this we MUST set the server.port property otherwise it defaults to port 8080 and ANY additional
+components will fail to start. iDaaS Connect HL7 uses 9980. You can change this, but you will have to ensure other applications are not
+using the port you specify.
+
 
 ## Ongoing Enhancements
 We maintain all enhancements within the Git Hub portal under the 
