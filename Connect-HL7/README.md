@@ -79,6 +79,7 @@ following command: <br/>
 ```
 mvn clean install
  ```
+## Step 3: Configuring the Accelerator
 Depending upon if you have every run this code before and what libraries you have already in your local Maven instance it could take a few minutes.
 + Code Editor: You can right click on the Application.java in the /src/<application namespace> and select Run
 ### Design Pattern/Accelerator Configuration
@@ -118,22 +119,6 @@ idaas.schPort=10007
 idaas.vxuPort=10008
 ```
 
-### Running the App: Maven
-You can use Maven from the command line, you would need to go the specific directory where this code exists and has a pom.xml and then run the
-command: mvn clean install
-
-### Running the App: From Your Code Editor/IDE
-You can right click on Application.java file and select Run in the src directory.
-
-### Running the App from Command Line
-You will need to have built the application into a jar.
-
-1. You download the code
-2. You build the code into a jar
-3. Move the application.properties file from the \src\main\resources to where you would like it or just remember the location as it
-it will be needed later
-4. Make sure you have a Kafka instance up and running to process data with
-5. Go to a command line and execute java -jar <jarlocation>/<jarname.jar> --spring.config.location=file: ./<directory>/application.properties`
 
 Happy using and coding....
 
