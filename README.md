@@ -30,7 +30,7 @@ Please see the following files we have included to try and help: <br/>
 [Kafka](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/Kafka.md)<br/>
 [KafkaWindows](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/KafkaWindows.md)<br/>
 
-## Step 2: Running the App: Maven or Code Editor
+## Step 2: Running the Specific Demo App: Maven or Code Editor
 This section covers how to get the application started.
 + Maven: go to the directory of where you have this code. Specifically, you want to be at the same level as the POM.xml file and execute the
 following command: <br/>
