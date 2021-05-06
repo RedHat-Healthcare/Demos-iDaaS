@@ -6,9 +6,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.redhat.idaas.connect.fhir</groupId>
-    <artifactId>demo-idaas-connect-fhir</artifactId>
-    <version>1.5</version>
+    <artifactId>demo-idaas-connect-fhir-datatagging</artifactId>
+    <version>2.0.1-SNAPSHOT</version>
     <name>Demo - iDAAS Connect - FHIR</name>
+
+    <parent>
+        <groupId>com.redhat.idaas.connect</groupId>
+        <artifactId>idaas-demos</artifactId>
+        <version>2.0.1-SNAPSHOT</version>
+    </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
