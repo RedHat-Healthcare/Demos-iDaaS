@@ -3,13 +3,13 @@
 
   <groupId>com.redhat</groupId>
   <artifactId>idaas-dream-demo-parent</artifactId>
-  <version>2.0.1</version>
+  <version>2.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <parent>
     <groupId>com.redhat.idaas.connect</groupId>
     <artifactId>idaas-demos</artifactId>
-    <version>2.0.1</version>
+    <version>2.0.2-SNAPSHOT</version>
   </parent>
 
   <properties>
