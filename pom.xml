@@ -11,9 +11,9 @@
     <packaging>pom</packaging>
 
     <scm>
-      <connection>scm:git:https://github.com/jayfray12/iDaaS-Demos.git</connection>
-      <url>https://github.com/jayfray12/iDaaS-Demos</url>
-      <developerConnection>scm:git:https://github.com/jayfray12/iDaaS-Demos.git</developerConnection>
+      <connection>scm:git:https://github.com/RedHat-Healthcare/iDaaS-Demos.git</connection>
+      <url>https://github.com/RedHat-Healthcare/iDaaS-Demos</url>
+      <developerConnection>scm:git:https://github.com/RedHat-Healthcare/iDaaS-Demos.git</developerConnection>
       <tag>v1.0.0</tag>
     </scm>
 
