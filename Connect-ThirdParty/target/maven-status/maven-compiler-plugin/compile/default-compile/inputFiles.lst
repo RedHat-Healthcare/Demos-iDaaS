@@ -1,9 +1,8 @@
-/home/rafal/workspace/redhat/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/ResearchData.java
-/home/rafal/workspace/redhat/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/Application.java
-/home/rafal/workspace/redhat/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/CovidJohnHopkinsUSDailyData.java
-/home/rafal/workspace/redhat/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/ReportingOutput.java
-/home/rafal/workspace/redhat/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/LastReportedResearchStrategy.java
-/home/rafal/workspace/redhat/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/ConfigProperties.java
-/home/rafal/workspace/redhat/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/CamelConfiguration.java
-/home/rafal/workspace/redhat/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/AggregatorResearch.java
-/home/rafal/workspace/redhat/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/MandatoryReporting.java
+/home/jfroehli/AppDev/iDAAS/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/CamelConfiguration.java
+/home/jfroehli/AppDev/iDAAS/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/CovidJohnHopkinsUSDailyData.java
+/home/jfroehli/AppDev/iDAAS/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/ConfigProperties.java
+/home/jfroehli/AppDev/iDAAS/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/AggregatorResearch.java
+/home/jfroehli/AppDev/iDAAS/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/Application.java
+/home/jfroehli/AppDev/iDAAS/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/ResearchData.java
+/home/jfroehli/AppDev/iDAAS/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/ReportingOutput.java
+/home/jfroehli/AppDev/iDAAS/iDaaS-Demos/Connect-ThirdParty/src/main/java/com/redhat/idaas/connect/thirdparty/MandatoryReporting.java
