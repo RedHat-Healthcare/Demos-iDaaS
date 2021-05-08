@@ -56,7 +56,19 @@ Please see the following files we have included to try and help: <br/>
 [Kafka](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/Kafka.md)<br/>
 [KafkaWindows](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/KafkaWindows.md)<br/>
 
-## Step 2: Running the App: Maven or Code Editor
+## Step 2: Running the App
+There are several ways to run the FHIR applications.
+
+### OpenShift
+You can deploy the application in several different ways.
+
++ Deploy directly from <a href="https://github.com/RedHat-Healthcare/iDaaS-Connect/tree/master/iDaaS-Connect-FHIR" target="_blank">Github</a>
++ JAR File: You can deploy the latest release from the releases area within the
+<a href="https://github.com/RedHat-Healthcare/iDaaS-Connect/" target="_blank">Connect FHIR repo</a><br/>
+or you can build a jar file locally and deploy it that way as well.
+The application.properties defined below can be accessed as ConfigMaps.
+
+### Local Developers
 This section covers how to get the application started.
 + Maven: go to the directory of where you have this code. Specifically, you want to be at the same level as the POM.xml file and execute the
 following command: <br/>
@@ -65,7 +77,8 @@ mvn clean install
  ```
 Depending upon if you have every run this code before and what libraries you have already in your local Maven instance it could take a few minutes.
 + Code Editor: You can right click on the Application.java in the /src/<application namespace> and select Run
-### Design Pattern/Accelerator Configuration
+
+#### Design Pattern/Accelerator Configuration
 All iDaaS Design Pattern/Accelelrators have application.properties files to enable some level of reusability of code and simplfying configurational enhancements.<br/>
 In order to run multiple iDaaS integration applications we had to ensure the internal http ports that
 the application uses. In order to do this we MUST set the server.port property otherwise it defaults to port 8080 and ANY additional
@@ -92,11 +105,14 @@ idaas.fhirVendor=microsoft
 
 Supported properties include:
 ```
+idaas.processToFHIR=true
 idaas.kafkaBrokers=localhost:9092 #a comma separated list of kafka brokers e.g. host1:port1,host2:port2
 idaas.fhirVendor=ibm
 idaas.ibmURI=http://localhost:8090/fhir-server/api/v4/
 idaas.hapiURI=http://localhost:8080/hapi/api/v4/
 idaas.msoftURI=http://localhost:9999/microsoftapi/api/v4/
+# Server - Internal
+server.port=9981
 ```
 
 # Testing
