@@ -107,7 +107,6 @@ public class CamelConfiguration extends RouteBuilder {
      *   Intended to enable simple movement of data aside from specific standards
      *   Common Use Cases are areas to support remote (iOT/Edge) and any other need for small footprints to larger
      *   footprints
-     * : Unstructured data, st
      */
     from("direct:hidn")
             .setHeader("messageprocesseddate").simple("${date:now:yyyy-MM-dd}")
