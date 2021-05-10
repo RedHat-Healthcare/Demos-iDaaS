@@ -1,10 +1,10 @@
+com/redhat/idaas/connect/thirdparty/CamelConfiguration$1.class
 com/redhat/idaas/connect/thirdparty/CovidJohnHopkinsUSDailyData.class
 com/redhat/idaas/connect/thirdparty/ResearchData.class
 com/redhat/idaas/connect/thirdparty/MandatoryReporting.class
 META-INF/spring-configuration-metadata.json
 com/redhat/idaas/connect/thirdparty/AggregatorResearch.class
 com/redhat/idaas/connect/thirdparty/CamelConfiguration.class
-com/redhat/idaas/connect/thirdparty/ConfigProperties.class
 com/redhat/idaas/connect/thirdparty/ReportingOutput.class
+com/redhat/idaas/connect/thirdparty/ConfigProperties.class
 com/redhat/idaas/connect/thirdparty/Application.class
-com/redhat/idaas/connect/thirdparty/LastReportedResearchStrategy.class
