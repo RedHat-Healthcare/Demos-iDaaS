@@ -29,9 +29,21 @@ In order for ANY processing to occur you must have a Kafka server running that t
 Please see the following files we have included to try and help: <br/>
 [Kafka](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/Kafka.md)<br/>
 [KafkaWindows](https://github.com/RedHat-Healthcare/iDaaS-Demos/blob/master/KafkaWindows.md)<br/>
-
+Within the application.properties there is a setting to configure as many as needed seperated by a comma. <br/>
+```
+# Kafka
+kafkaBrokers=localhost:9092
+ ```
+If you are using OpenShift make sure the appropriate Operator is installed. <br/>
 ## Step 2: Running the Specific Demo App: Maven or Code Editor
 This section covers how to get the application started.
++ OpenShift: You have several ways to deploy and implement iDaaS into containers. The teams are
+working on operators specifically. However, you can simply deploy it from a JAR file, clone the code and put it into your own specific repository and
+deploy it from there. In the end you will need to leverage ConfigMaps for the needed properties.
++ Docker: Within each specific accelerator based directory you can find a docker-compose.yml file to leverage. You will be able to run any specific repository or code downloaded by:
+```
+docker-compose up
+```
 + Maven: go to the directory of where you have this code. Specifically, you want to be at the same level as the POM.xml file and execute the
 following command: <br/>
 ```
