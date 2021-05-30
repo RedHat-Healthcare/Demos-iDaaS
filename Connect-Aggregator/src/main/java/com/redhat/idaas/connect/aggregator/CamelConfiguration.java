@@ -95,34 +95,68 @@ public class CamelConfiguration extends RouteBuilder {
 
   @Override
   public void configure() throws Exception {
+    /*
+     * Audit
+     * Direct component within platform to ensure we can centralize logic
+     * There are some values we will need to set within every route
+     * We are doing this to ensure we dont need to build a series of beans
+     * and we keep the processing as lightweight as possible
+     */
+    from("direct:auditing")
+        .routeId("KIC-KnowledgeInsightConformance")
+        .setHeader("messageprocesseddate").simple("${date:now:yyyy-MM-dd}")
+        .setHeader("messageprocessedtime").simple("${date:now:HH:mm:ss:SSS}")
+        .setHeader("processingtype").exchangeProperty("processingtype")
+        .setHeader("industrystd").exchangeProperty("industrystd")
+        .setHeader("component").exchangeProperty("componentname")
+        .setHeader("messagetrigger").exchangeProperty("messagetrigger")
+        .setHeader("processname").exchangeProperty("processname")
+        .setHeader("auditdetails").exchangeProperty("auditdetails")
+        .setHeader("camelID").exchangeProperty("camelID")
+        .setHeader("exchangeID").exchangeProperty("exchangeID")
+        .setHeader("internalMsgID").exchangeProperty("internalMsgID")
+        .setHeader("bodyData").exchangeProperty("bodyData")
+        .convertBodyTo(String.class).to(getKafkaTopicUri("opsmgmt_platformtransactions"))
+    ;
+    /*
+     *  Logging
+     */
+    from("direct:logging")
+        .routeId("Logging")
+        .log(LoggingLevel.INFO, log, "HL7 Message: [${body}]")
+    //To invoke Logging
+    //.to("direct:logging")
+    ;
 
     /*
      *  Sample: CSV Aggregate Research Data to Topic
      *
      */
     from("file:{{aggregator.research.data.directory}}/")
-            .choice()
+        .routeId("ResearchEIP-Aggregator")
+        .choice()
             .when(simple("${file:ext} == 'csv'"))
-            .split(body().tokenize("\n")).streaming()
-            .unmarshal(new BindyCsvDataFormat(AggregatorResearch.class))
-            //Aggregate messages with the same organizationId, patientAccount and zipCode
-            //waiting 10 seconds for messages before completing aggregation
-            //and passing a single message with the latest reportedDateTime
-            .aggregate(simple("${body.organizationId}-${body.patientAccount}-${body.zipCode}"), new LastReportedResearchStrategy()).completionTimeout(10000)
-            .marshal(new JacksonDataFormat(AggregatorResearch.class))
-            .to(getKafkaTopicUri("ResearchData"))
-            // Auditing
-            .setProperty("processingtype").constant("csv-data")
-            .setProperty("appname").constant("iDAAS-Connect-Aggregator")
-            .setProperty("industrystd").constant("CSV")
-            .setProperty("messagetrigger").constant("CSVFile-ResearchData")
-            .setProperty("component").simple("${routeId}")
-            .setProperty("camelID").simple("${camelId}")
-            .setProperty("exchangeID").simple("${exchangeId}")
-            .setProperty("internalMsgID").simple("${id}")
-            .setProperty("bodyData").simple("${body}")
-            .setProperty("processname").constant("Input")
-            .setProperty("auditdetails").constant("${file:name} - was processed, parsed and put into topic")
-            .wireTap("direct:auditing");
+              .split(body().tokenize("\n")).streaming()
+              .unmarshal(new BindyCsvDataFormat(AggregatorResearch.class))
+              //Aggregate messages with the same organizationId, patientAccount and zipCode
+              //waiting 10 seconds for messages before completing aggregation
+              //and passing a single message with the latest reportedDateTime
+              .aggregate(simple("${body.organizationId}-${body.patientAccount}-${body.zipCode}"), new LastReportedResearchStrategy()).completionTimeout(10000)
+              .marshal(new JacksonDataFormat(AggregatorResearch.class))
+              .to(getKafkaTopicUri("ResearchData"))
+              // Auditing
+              .setProperty("processingtype").constant("csv-data")
+              .setProperty("appname").constant("iDAAS-Connect-Aggregator")
+              .setProperty("industrystd").constant("CSV")
+              .setProperty("messagetrigger").constant("CSVFile-ResearchData")
+              .setProperty("component").simple("${routeId}")
+              .setProperty("camelID").simple("${camelId}")
+              .setProperty("exchangeID").simple("${exchangeId}")
+              .setProperty("internalMsgID").simple("${id}")
+              .setProperty("bodyData").simple("${body}")
+              .setProperty("processname").constant("Input")
+              .setProperty("auditdetails").constant("${file:name} - was processed, parsed and put into topic")
+              .wireTap("direct:auditing")
+    ;
   }
 }
