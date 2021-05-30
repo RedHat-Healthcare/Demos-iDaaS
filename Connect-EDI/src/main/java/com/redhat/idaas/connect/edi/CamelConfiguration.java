@@ -89,19 +89,27 @@ public class CamelConfiguration extends RouteBuilder {
      * Direct actions used across platform
      *
      */
-    from("direct:auditing").setHeader("messageprocesseddate").simple("${date:now:yyyy-MM-dd}")
-            .setHeader("messageprocessedtime").simple("${date:now:HH:mm:ss:SSS}").setHeader("processingtype")
-            .exchangeProperty("processingtype").setHeader("industrystd").exchangeProperty("industrystd")
-            .setHeader("component").exchangeProperty("componentname").setHeader("messagetrigger")
-            .exchangeProperty("messagetrigger").setHeader("processname").exchangeProperty("processname")
-            .setHeader("auditdetails").exchangeProperty("auditdetails").setHeader("camelID").exchangeProperty("camelID")
-            .setHeader("exchangeID").exchangeProperty("exchangeID").setHeader("internalMsgID")
-            .exchangeProperty("internalMsgID").setHeader("bodyData").exchangeProperty("bodyData")
-            .convertBodyTo(String.class).to(getKafkaTopicUri("opsmgmt_platformtransactions"));
+    from("direct:auditing")
+        .routeId("KIC-KnowledgeInsightConformance")
+        .setHeader("messageprocesseddate").simple("${date:now:yyyy-MM-dd}")
+        .setHeader("messageprocessedtime").simple("${date:now:HH:mm:ss:SSS}")
+        .setHeader("processingtype").exchangeProperty("processingtype")
+        .setHeader("industrystd").exchangeProperty("industrystd")
+        .setHeader("component").exchangeProperty("componentname")
+        .setHeader("messagetrigger").exchangeProperty("messagetrigger")
+        .setHeader("processname").exchangeProperty("processname")
+        .setHeader("auditdetails").exchangeProperty("auditdetails")
+        .setHeader("camelID").exchangeProperty("camelID")
+        .setHeader("exchangeID").exchangeProperty("exchangeID")
+        .setHeader("internalMsgID").exchangeProperty("internalMsgID")
+        .setHeader("bodyData").exchangeProperty("bodyData")
+        .convertBodyTo(String.class).to(getKafkaTopicUri("opsmgmt_platformtransactions"));
     /*
      * Direct Logging
      */
-    from("direct:logging").log(LoggingLevel.INFO, log, "Transaction Message: [${body}]");
+    from("direct:logging")
+        .routeId("Logging")
+        .log(LoggingLevel.INFO, log, "Transaction Message: [${body}]");
 
     /*
      *  Sample: CSV ETL Process to Topic and MySQL
@@ -109,19 +117,22 @@ public class CamelConfiguration extends RouteBuilder {
      */
     //from("file:{{covid.reporting.directory}}/?fileName={{covid.reporting.extension}}")
     from("file:{{270.inputdirectory}}/")
-            .choice()
+        .routeId("270-EDI-File")
+        .choice()
             .when(simple("${file:ext} == 'edi'"))
             .to(getKafkaTopicUri("edi_270"))
             .to("file:{{output.directory}}/");
 
      from("file:{{835.inputdirectory}}/")
-            .choice()
+         .routeId("835-EDI-File")
+         .choice()
             .when(simple("${file:ext} == 'edi'"))
             .to(getKafkaTopicUri("edi_835"))
             .to("file:{{output.directory}}/");
 
     from("file:{{837.inputdirectory}}/")
-            .choice()
+        .routeId("837-EDI-File")
+        .choice()
             .when(simple("${file:ext} == 'edi'"))
             .to(getKafkaTopicUri("edi_837"))
             .to("file:{{output.directory}}/");
