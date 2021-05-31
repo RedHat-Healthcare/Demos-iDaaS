@@ -105,7 +105,9 @@ public class CamelConfiguration extends RouteBuilder {
      * Direct actions used across platform
      *
      */
-    from("direct:auditing").setHeader("messageprocesseddate").simple("${date:now:yyyy-MM-dd}")
+    from("direct:auditing")
+        .routeId("KIC-KnowledgeInsightConformance")
+        .setHeader("messageprocesseddate").simple("${date:now:yyyy-MM-dd}")
         .setHeader("messageprocessedtime").simple("${date:now:HH:mm:ss:SSS}")
         .setHeader("processingtype").exchangeProperty("processingtype")
         .setHeader("industrystd").exchangeProperty("industrystd")
@@ -121,13 +123,16 @@ public class CamelConfiguration extends RouteBuilder {
     /*
      * Direct Logging
      */
-    from("direct:logging").log(LoggingLevel.INFO, log, "Transaction Message: [${body}]");
+    from("direct:logging")
+        .routeId("Logging")
+        .log(LoggingLevel.INFO, log, "Transaction Message: [${body}]");
 
 
     /*
      * Sample: Kafka Topic Pull
      */
     from(getKafkaTopicUri("fhirsvr_adverseevent")).routeId("AdverseEvent-MiddleTier")
+        .routeId("FHIRTopic-AdverseEvent")
         // Auditing
         .setProperty("processingtype").constant("data")
         .setProperty("appname").constant("iDAAS-ConnectClinical-IndustryStd")
@@ -151,6 +156,7 @@ public class CamelConfiguration extends RouteBuilder {
      *
      */
         from("file:{{mandatory.reporting.directory}}/?fileName={{mandatory.reporting.file}}")
+            .routeId("ETL-MandatoryReporting")
             .split(body().tokenize("\n"))
             .streaming().unmarshal(new BindyCsvDataFormat(ReportingOutput.class))
             .marshal(new JacksonDataFormat(ReportingOutput.class)).to(getKafkaTopicUri("MandatoryReporting"))
@@ -174,30 +180,32 @@ public class CamelConfiguration extends RouteBuilder {
      *
      */
         from(getKafkaTopicUri("MandatoryReporting")).unmarshal(new JacksonDataFormat(ReportingOutput.class))
-          .process(new Processor() {
-          @Override
-          public void process(Exchange exchange) throws Exception {
-            final ReportingOutput payload = exchange.getIn().getBody(ReportingOutput.class);
-            final List<Object> patient = new ArrayList<Object>();
-            patient.add(payload.getOrganizationId());
-            patient.add(payload.getPatientAccount());
-            patient.add(payload.getPatientName());
-            patient.add(payload.getZipCode());
-            patient.add(payload.getRoomBed());
-            patient.add(payload.getAge());
-            patient.add(payload.getGender());
-            patient.add(payload.getAdmissionDate());
+            .routeId("Reporting-TopicToSQLPersistence")
+            .process(new Processor() {
+            @Override
+            public void process(Exchange exchange) throws Exception {
+              final ReportingOutput payload = exchange.getIn().getBody(ReportingOutput.class);
+              final List<Object> patient = new ArrayList<Object>();
+              patient.add(payload.getOrganizationId());
+              patient.add(payload.getPatientAccount());
+              patient.add(payload.getPatientName());
+              patient.add(payload.getZipCode());
+              patient.add(payload.getRoomBed());
+              patient.add(payload.getAge());
+              patient.add(payload.getGender());
+              patient.add(payload.getAdmissionDate());
             exchange.getIn().setBody(patient);
           }
         })
         .to("sql:insert into reportedcases (organization, patientaccount, patientname, zipcode, roombed, age, gender, admissiondate) values (#,#,#,#,#,#,#,#)");
 
      /*
-     *  Sample: CSV Covid Data to Topic
-     *  Covid John Hopkins Data
-     */
-    //from("file:{{covid.reporting.directory}}/?fileName={{covid.reporting.extension}}")
+      *  Sample: CSV Covid Data to Topic
+      *  Covid John Hopkins Data
+      */
+        //from("file:{{covid.reporting.directory}}/?fileName={{covid.reporting.extension}}")
         from("file:{{covid.reporting.directory}}/")
+            .routeId("ETL-Covid19Reporting")
             .choice()
             .when(simple("${file:ext} == 'csv'"))
             //.when(simple("${file:ext} == ${covid.reporting.extension}"))
@@ -205,11 +213,12 @@ public class CamelConfiguration extends RouteBuilder {
             .unmarshal(new BindyCsvDataFormat(CovidJohnHopkinsUSDailyData.class))
             .marshal(new JacksonDataFormat(CovidJohnHopkinsUSDailyData.class))
             .to(getKafkaTopicUri("CovidDailyData"));
+
       /*
        *  Sample: CSV Research Data to Topic
-       *
        */
        from("file:{{research.data.directory}}/")
+            .routeId("ETL-ResearchData")
             .choice()
             .when(simple("${file:ext} == 'csv'"))
             //.when(simple("${file:ext} == ${covid.reporting.extension}"))
