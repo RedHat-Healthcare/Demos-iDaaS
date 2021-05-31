@@ -68,6 +68,7 @@ public class CamelConfiguration extends RouteBuilder {
      *
      */
     from("direct:auditing")
+        .routeId("KIC-KnowledgeInsightConformance")
         .setHeader("messageprocesseddate").simple("${date:now:yyyy-MM-dd}")
         .setHeader("messageprocessedtime").simple("${date:now:HH:mm:ss:SSS}")
         .setHeader("processingtype").exchangeProperty("processingtype")
@@ -87,7 +88,8 @@ public class CamelConfiguration extends RouteBuilder {
     *  Logging
     */
     from("direct:logging")
-      .log(LoggingLevel.INFO, log, "Transaction Message: [${body}]")
+        .routeId("Logging")
+        .log(LoggingLevel.INFO, log, "Transaction Message: [${body}]")
     ;
 
     /*
