@@ -60,6 +60,7 @@ public class CamelConfiguration extends RouteBuilder {
 
     // Output to configured RDBMS ONLY is isStoreinDb = true
     if (config.isStoreInDb()) {
+      route.id("StoreToDB");
       route.multicast().parallelProcessing().to("direct:file", "direct:db");
       RouteDefinition from = from("direct:db");
       String columns = String.join(",", AuditMessage.DB_PERSISTABLE_FIELDS);
@@ -79,6 +80,7 @@ public class CamelConfiguration extends RouteBuilder {
     }
     //  Output JSON Documents ONLY is isStoreinFS = true
     if (config.isStoreInFs()) {
+      route.id("StoreToFS");
       from("direct:file").marshal().json(JsonLibrary.Jackson)
               .to("file:" + config.getAuditDir());
     }
