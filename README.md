@@ -19,8 +19,6 @@ auto.offset.reset=earliest <br/>
 3. An internet connection with active internet connectivity, this is to ensure that if any Maven commands are
 run and any libraries need to be pulled down they can.<br/>
  
-We also leverage [Kafka Tools](https://kafkatool.com/) to help us show Kafka details and transactions..
-
 # Start The Engine!!!
 This section covers the running any of the design patterns/accelerators. There are several options to start the Engine Up!!!
 
@@ -35,22 +33,76 @@ Within the application.properties there is a setting to configure as many as nee
 kafkaBrokers=localhost:9092
  ```
 If you are using OpenShift make sure the appropriate Operator is installed. <br/>
-## Step 2: Running the Specific Demo App: Maven or Code Editor
+## Step 2: Running the App: Maven Commands or Code Editor or Docker
 This section covers how to get the application started.
-+ OpenShift: You have several ways to deploy and implement iDaaS into containers. The teams are
-working on operators specifically. However, you can simply deploy it from a JAR file, clone the code and put it into your own specific repository and
-deploy it from there. In the end you will need to leverage ConfigMaps for the needed properties.
++ Maven: The following steps are needed to run the code. Either through your favorite IDE or command line
+```
+git clone <repo name>
+For example:
+git clone https://github.com/RedHat-Healthcare/iDaaS-Connect.git
+ ```
+You can either compile at the base directory or go to the specific iDaaS-Connect acceelerator. Specifically, you want to
+be at the same level as the POM.xml file and execute the following command: <br/>
+```
+mvn clean install
+```
+You can run the individual efforts with a specific command, it is always recommended you run the mvn clean install first.
+Here is the command to run the design pattern from the command line: <br/>
+```
+mvn spring-boot:run
+ ```
+Depending upon if you have every run this code before and what libraries you have already in your local Maven instance
+it could take a few minutes.
++ Code Editor: You can right click on the Application.java in the /src/<application namespace> and select Run
 + Docker: Within each specific accelerator based directory you can find a docker-compose.yml file to leverage. You will be able to run any specific repository or code downloaded by:
 ```
 docker-compose up
 ```
-+ Maven: go to the directory of where you have this code. Specifically, you want to be at the same level as the POM.xml file and execute the
-following command: <br/>
+# Running the Java JAR
+If you don't run the code from an editor or from the maven commands above. You can compile the code through the maven
+commands above to build a jar file. Then, go to the /target directory and run the following command: <br/>
 ```
-mvn clean install
+java -jar <jarfile>.jar 
  ```
-Depending upon if you have every run this code before and what libraries you have already in your local Maven instance it could take a few minutes.
-+ Code Editor: You can right click on the Application.java in the /src/<application namespace> and select Run
+
+## Design Pattern/Accelerator Configuration
+Each design pattern/accelerator has a unique and specific application.properties for its usage and benefit. Please make
+sure to look at these as there is a lot of power in these and the goal is to minimize hard coded anything.
+Leverage the respective application.properties file in the correct location to ensure the properties are properly set
+and use a custom location. You can compile the code through the maven commands above to build a jar file. Then, go
+to the /target directory and run the following command: <br/>
+```
+java -jar <jarfile>.jar --spring.config.location=file:./config/application.properties
+ ```
+# Admin Interface - Management and Insight of Components
+Within each specific repository there is an administrative user interface that allows for monitoring and insight into the
+connectivity of any endpoint. Additionally, there is also the implementation to enable implementations to build there own
+by exposing the metadata. The data is exposed and can be used in numerous very common tools like Data Dog, Prometheus and so forth.
+This capability to enable would require a few additional properties to be set.
+
+Below is a generic visual of how this looks (the visual below is specific to iDaaS Connect HL7): <br/>
+
+![iDaaS Platform - Visuals - iDaaS Data Flow - Detailed.png](https://github.com/RedHat-Healthcare/iDAAS/blob/master/images/iDAAS-Platform/iDaaS-Mgmt-UI.png)
+
+Every asset has its own defined specific port, we have done this to ensure multiple solutions can be run simultaneously.
+
+## Administrative Interface(s) Specifics
+For all the URL links we have made them localhost based, simply change them to the server the solution is running on.
+
+|<b> iDaaS Connect Asset | Port | Admin URL / JMX URL |
+| :---        | :----   | :--- | 
+|iDaaS Connect HL7 | 9980| http://localhost:9980/actuator/hawtio/index.html / http://localhost:9980/actuator/jolokia/read/org.apache.camel:context=*,type=routes,name=* | 
+|iDaaS Connect FHIR | 9981| http://localhost:9981/actuator/hawtio/index.html / http://localhost:9981/actuator/jolokia/read/org.apache.camel:context=*,type=routes,name=*|  
+|iDaaS Connect BlueButton| 9982| http://localhost:9982/actuator/hawtio/index.html / http://localhost:9982/actuator/jolokia/read/org.apache.camel:context=*,type=routes,name=*|  
+|iDaaS Connect Third Party | 9983| http://localhost:9983/actuator/hawtio/index.html / http://localhost:9983/actuator/jolokia/read/org.apache.camel:context=*,type=routes,name=*|  
+|iDaaS Connect EDI | 9984| http://localhost:9984/actuator/hawtio/index.html / http://localhost:9984/actuator/jolokia/read/org.apache.camel:context=*,type=routes,name=*|  
+|iDaaS Connect Compliance Automation | 9985| http://localhost:9985/actuator/hawtio/index.html / http://localhost:9985/actuator/jolokia/read/org.apache.camel:context=*,type=routes,name=*|  
+|iDaaS Connect ePrescribe | 9986| http://localhost:9986/actuator/hawtio/index.html / http://localhost:9986/actuator/jolokia/read/org.apache.camel:context=*,type=routes,name=*|  
++ OpenShift: You have several ways to deploy and implement iDaaS into containers. The teams are
+working on operators specifically. However, you can simply deploy it from a JAR file, clone the code and put it into your own specific repository and
+deploy it from there. In the end you will need to leverage ConfigMaps for the needed properties.
+
+
 # General Architecture
 The following section is meant to define and also help visualize the general architecture within an healthcare  
 (payer/provider/life sciences) implementation.
