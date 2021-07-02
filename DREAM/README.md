@@ -1,7 +1,10 @@
-![Maven Build status](https://github.com/RedHat-Healthcare/Demo-iDAAS-DREAM/workflows/Maven%20Build%20and%20Deploy/badge.svg)
+![Maven Build status](https://github.com/RedHat-Healthcare/iDaaS-Demos/workflows/CI%20for%20DREAM%20demo/badge.svg)
+![Maven Deploy status](https://github.com/RedHat-Healthcare/iDaaS-Demos/workflows/deploy%20DREAM%20demo/badge.svg)
 
 # Demo-iDAAS-DREAM
 Demo of iDAAS DREAM capabilities
+
+You can see it in action in this [demo recording](https://www.youtube.com/watch?v=tNe6QU1Yq8U) and some additional technological details in this [blog post](https://blog.kie.org/2021/06/intelligent-kafka-message-routing-using-drools-dmn-engine-and-apache-camel.html).
 
 ## Technologies used
 
@@ -24,6 +27,8 @@ Alternatively pre-built artifacts are distribuited through Maven Repositories
 # Demo objectives
 
 Showcase the ability to route data real time and create new topics on demand as needed to help facilitate information processing and addressing needs for business in real time.
+
+![DMN decision table](Screenshot-EIP-diagram.png)
 
 - HL7 `ADT` messages from `MMS` application routed to `MMSAllADT` kafka topic
 - HL7 `ADT` messages from `MMS` application for `A03` "_Patient Discharge_" are also routed to `MMSDischarges` kafka topic
